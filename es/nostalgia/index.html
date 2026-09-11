@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width">
+<meta name="description" content="NostalgIA: Trabajo de Fin de Grado (10/10) de restauración de fotografías históricas dañadas. Simula escala de grises, roturas y arañazos sobre imágenes de CelebA y compara enfoques GAN y U-Net."><meta name="theme-color" content="#0a0b0d">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_ES"><meta property="og:locale:alternate" content="en_US"><meta property="og:url" content="https://raulbaeza15.github.io/es/nostalgia/"><link rel="canonical" href="https://raulbaeza15.github.io/es/nostalgia/"><link rel="alternate" hreflang="en" href="https://raulbaeza15.github.io/nostalgia/"><link rel="alternate" hreflang="es" href="https://raulbaeza15.github.io/es/nostalgia/"><link rel="alternate" hreflang="x-default" href="https://raulbaeza15.github.io/nostalgia/">
+<meta property="og:title" content="NostalgIA — Raúl Baeza Osuna">
+<meta property="og:description" content="NostalgIA: Trabajo de Fin de Grado (10/10) de restauración de fotografías históricas dañadas. Simula escala de grises, roturas y arañazos sobre imágenes de CelebA y compara enfoques GAN y U-Net.">
+<meta property="og:image" content="https://raulbaeza15.github.io/assets/projects/nostalgia-unet-scratch.png"><meta property="og:image:alt" content="NostalgIA — imagen del proyecto">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="NostalgIA — Raúl Baeza Osuna">
+<meta name="twitter:description" content="NostalgIA: Trabajo de Fin de Grado (10/10) de restauración de fotografías históricas dañadas. Simula escala de grises, roturas y arañazos sobre imágenes de CelebA y compara enfoques GAN y U-Net."><meta name="twitter:image" content="https://raulbaeza15.github.io/assets/projects/nostalgia-unet-scratch.png">
+<title>NostalgIA — Raúl Baeza</title><style>
+@import "https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap";
+:root{--bg:#0a0b0d;--panel:#101216;--text:#f3f0e9;--muted:#9da0a6;--line:#282b31;--acid:#c7ff3d;--max:1220px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);margin:0;font-family:Manrope,Arial,sans-serif;font-size:16px;line-height:1.6}
+a{color:inherit;text-decoration:none}.wrap{width:min(calc(100% - 48px),var(--max));margin-inline:auto}
+.nav{border-bottom:1px solid var(--line);justify-content:space-between;align-items:center;height:92px;display:flex}
+.mark{letter-spacing:-.06em;font-size:24px;font-weight:600}.mark span{color:var(--acid)}
+nav{text-transform:uppercase;letter-spacing:.08em;align-items:center;gap:34px;font-family:DM Mono,monospace;font-size:12px;display:flex}
+nav a:hover,footer a:hover{color:var(--acid)}.contact{border:1px solid var(--line);padding:10px 16px}.lang-switch{align-items:center;gap:6px;font-family:DM Mono,monospace;font-size:11px;letter-spacing:.08em;display:flex}.lang-switch a{color:var(--muted);padding:4px 2px}.lang-switch a[aria-current="page"]{color:var(--acid)}.lang-switch span{color:var(--line)}
+.kicker{text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-family:DM Mono,monospace;font-size:12px}
+.kicker span{background:var(--acid);width:7px;height:7px;box-shadow:0 0 15px var(--acid);border-radius:50%;margin-right:9px;display:inline-block}
+.section-head{text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-family:DM Mono,monospace;font-size:12px;border-bottom:1px solid var(--line);justify-content:space-between;display:flex}
+.button{text-transform:uppercase;letter-spacing:.05em;border:1px solid var(--line);padding:15px 20px;font-family:DM Mono,monospace;font-size:12px;display:inline-block}
+.button.primary{background:var(--acid);color:#111;border-color:var(--acid);font-weight:500}
+footer{border-top:1px solid var(--line);color:var(--muted);text-transform:uppercase;justify-content:space-between;padding:28px 0 45px;font-family:DM Mono,monospace;font-size:11px;display:flex}
+footer div{gap:22px;display:flex}
+.case-hero{padding:90px 0 30px}
+.case-hero h1{letter-spacing:-.06em;margin:42px 0 16px;font-size:clamp(48px,7.5vw,100px);font-weight:500;line-height:.95}
+.case-sub{color:var(--muted);margin:0 0 28px;font-size:clamp(19px,2.2vw,24px);font-weight:400}
+.lede{color:#c3c4c7;max-width:660px;margin:0;font-size:19px}
+.chips{flex-wrap:wrap;gap:7px;margin:32px 0 0;padding:0;list-style:none;display:flex}
+.chips li{border:1px solid var(--line);text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;font-family:DM Mono,monospace;font-size:10px}
+.facts{border-top:1px solid var(--line);margin-top:60px}
+.fact{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+.fact dt{text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:DM Mono,monospace;font-size:11px;padding-top:3px}
+.fact dd{margin:0;color:#d2d3d4;font-size:16px}
+.gallery{padding:40px 0 0}
+figure{margin:0;padding:60px 0;border-bottom:1px solid var(--line)}
+figure img{width:100%;display:block;background:#16191e;border:1px solid var(--line)}
+figcaption{text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:14px;font-family:DM Mono,monospace;font-size:11px}
+.steps{grid-template-columns:repeat(3,1fr);gap:40px;padding:60px 0;display:grid}
+.step b{color:var(--acid);letter-spacing:.08em;font-family:DM Mono,monospace;font-size:12px;font-weight:500}
+.step h3{letter-spacing:-.02em;margin:14px 0 10px;font-size:21px;font-weight:600}
+.step p{color:#b9bbc0;margin:0;font-size:15px}
+.case-links{background:var(--panel);border:1px solid var(--line);justify-content:space-between;align-items:center;gap:26px;margin:80px auto 90px;padding:55px 60px;display:flex;flex-wrap:wrap}
+.case-links p{letter-spacing:-.03em;margin:0;font-size:clamp(24px,3vw,34px);line-height:1.15;font-weight:500}
+.link-buttons{gap:10px;display:flex;flex-wrap:wrap}
+.back{text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:DM Mono,monospace;font-size:12px}
+.back:hover{color:var(--acid)}
+.nexus-fig{padding:0;overflow:hidden}
+.nexus{background:radial-gradient(circle,#29351b 0,#111510 45%,#0d0f11 75%);min-height:420px;display:flex}
+.nexus-art{text-align:center;color:#9fa88b;letter-spacing:.12em;grid-template:repeat(3,1fr)/repeat(3,1fr);align-items:center;width:100%;padding:45px;font-family:DM Mono,monospace;font-size:10px;display:grid}
+.nexus-art b{color:var(--acid);letter-spacing:-.06em;aspect-ratio:1;border:1px solid #63752e;border-radius:50%;grid-area:2/2;place-items:center;font-size:40px;display:grid;box-shadow:0 0 50px #aee93333}
+@media (width<=760px){
+.wrap{width:min(calc(100% - 28px),var(--max))}.nav{height:72px}.nav nav>a:not(.contact){display:none}
+.case-hero{padding:60px 0 10px}.case-hero h1{font-size:46px;margin:34px 0 12px}
+.fact{grid-template-columns:1fr;gap:6px;padding:16px 0}
+figure{padding:40px 0}.steps{grid-template-columns:1fr;gap:34px;padding:40px 0}
+.case-links{padding:36px 26px;margin:60px auto 70px}
+footer{display:block}footer div{margin-top:15px}}
+</style></head><body>
+<header class="nav wrap"><a class="mark" href="/es/" aria-label="Inicio">RB<span>.</span></a><nav aria-label="Navegación principal"><a href="/es/#work">Proyectos</a><a href="/es/#about">Sobre mí</a><a class="contact" href="mailto:raulbaeza8@gmail.com">Contacto ↗</a><div class="lang-switch" role="group" aria-label="Language / Idioma"><a href="/nostalgia/" hreflang="en" data-lang="en">EN</a><span aria-hidden="true">/</span><a href="/es/nostalgia/" hreflang="es" data-lang="es" aria-current="page">ES</a></div></nav></header>
+<main><section class="case-hero wrap"><p class="kicker"><span></span> 03 / Trabajo de Fin de Grado · 2024</p><h1>NostalgIA</h1>
+<p class="case-sub">Restauración de fotografías históricas dañadas</p><p class="lede">Un pipeline completo de experimentación que simula escala de grises, roturas y arañazos sobre imágenes de CelebA, compara enfoques GAN y U-Net y documenta por qué U-Net se convirtió en la arquitectura final de restauración. Calificado con 10/10 en la ETSISI, Universidad Politécnica de Madrid.</p><ul class="chips"><li>Python</li><li>U-Net / GAN</li><li>TensorFlow / Keras</li><li>OpenCV</li><li>CelebA</li></ul></section><section class="wrap"><dl class="facts"><div class="fact"><dt>Contexto</dt><dd>Trabajo de Fin de Grado — ETSISI, UPM · junio de 2024</dd></div><div class="fact"><dt>Nota</dt><dd>10/10 · Tutor: Alberto Díaz Álvarez</dd></div><div class="fact"><dt>Dataset</dt><dd>CelebA: unas 210.000 imágenes de caras</dd></div><div class="fact"><dt>Código</dt><dd><a href="https://github.com/RaulBaeza15/NostalgIA" style="border-bottom:1px solid var(--line)">Pipeline completo en GitHub ↗</a></dd></div></dl></section><section class="gallery wrap"><div class="section-head"><p>Restauraciones</p><p>3 imágenes</p></div><figure><img src="/assets/projects/nostalgia-unet-scratch.png" alt="Retratos originales, arañados y restaurados con U-Net" loading="lazy"><figcaption>Restauración de arañazos: original, entrada dañada, salida de la U-Net</figcaption></figure><figure><img src="/assets/projects/nostalgia-unet-tear.png" alt="Retratos originales, rotos y restaurados con U-Net" loading="lazy"><figcaption>Restauración de roturas: las piezas perdidas, reconstruidas por la U-Net</figcaption></figure><figure><img src="/assets/projects/nostalgia-colorization-gan.png" alt="Foto original, entrada en blanco y negro y salida coloreada por la GAN" loading="lazy"><figcaption>Colorización: el enfoque GAN inicial sobre fotos en blanco y negro</figcaption></figure></section><section class="wrap"><div class="section-head"><p>Cómo funciona</p><p>Enfoque</p></div><div class="steps"><div class="step"><b>01</b><h3>Simular el daño</h3><p>No existen pares reales de fotos dañadas e intactas a escala, así que se sintetizan escala de grises, roturas (ruido de Perlin, dos umbrales) y arañazos (Perlin + Canny) sobre imágenes limpias de CelebA.</p></div><div class="step"><b>02</b><h3>Probar primero la GAN</h3><p>Un generador reconstruía las imágenes dañadas contra un discriminador. Prometedor en colorización, pero fallaba con roturas y arañazos incluso tras ajustarlo.</p></div><div class="step"><b>03</b><h3>Quedarse con la U-Net</h3><p>Entra la imagen dañada, sale la imagen reparada. La U-Net cumplió los objetivos del proyecto y se convirtió en la arquitectura final, documentada de principio a fin en la memoria.</p></div></div></section><section class="case-links wrap"><p>Las pruebas<br>detrás del caso.</p><div class="link-buttons">
+<a class="button primary" href="https://github.com/RaulBaeza15/NostalgIA">Repositorio en GitHub ↗</a><a class="button" href="https://www.linkedin.com/in/ra%C3%BAl-baeza-osuna-a9236b188/">Perfil de LinkedIn ↗</a></div></section>
+<section class="wrap" style="margin-bottom:70px"><a class="back" href="/es/#work">← Volver a proyectos</a></section></main><footer class="wrap"><p>© 2026 Raúl Baeza Osuna</p><div><a href="https://www.linkedin.com/in/ra%C3%BAl-baeza-osuna-a9236b188/">LinkedIn ↗</a><a href="https://github.com/RaulBaeza15">GitHub ↗</a></div></footer><script>document.querySelectorAll(".lang-switch a[data-lang]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("preferred-lang",a.getAttribute("data-lang"))}catch(e){}})});</script></body></html>

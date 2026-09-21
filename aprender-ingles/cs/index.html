@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="cs">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Apprendre l'anglais · Verbes irréguliers</title>
-<meta name="description" content="Entraîne-toi sur les verbes irréguliers anglais : questions aléatoires, correction immédiate et tableau de révision avec tous les verbes."/>
+<title>Uč se anglicky · Nepravidelná slovesa</title>
+<meta name="description" content="Procvičuj si nepravidelná anglická slovesa: náhodné otázky, okamžitá oprava a přehledná tabulka všech sloves."/>
 <meta name="theme-color" content="#0a0b0d"/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://raulbaeza15.github.io/aprender-ingles/fr/"/>
-<link rel="canonical" href="https://raulbaeza15.github.io/aprender-ingles/fr/"/>
-<meta property="og:title" content="Apprendre l'anglais · Verbes irréguliers"/>
-<meta property="og:description" content="Entraîne-toi sur les verbes irréguliers anglais : questions aléatoires, correction immédiate et tableau de révision."/>
+<meta property="og:url" content="https://raulbaeza15.github.io/aprender-ingles/cs/"/>
+<link rel="canonical" href="https://raulbaeza15.github.io/aprender-ingles/cs/"/>
+<meta property="og:title" content="Uč se anglicky · Nepravidelná slovesa"/>
+<meta property="og:description" content="Procvičuj si nepravidelná anglická slovesa: náhodné otázky, okamžitá oprava a přehledná tabulka."/>
 <meta property="og:image" content="https://raulbaeza15.github.io/aprender-ingles/og-image-en.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -141,60 +141,60 @@ button.play:hover{border-color:var(--acid)}
 <body>
 <header class="site">
   <div class="wrap">
-    <a class="brand" href="/aprender-ingles/fr/">Apprendre l'anglais<span>.</span></a>
-    <p class="sub">Verbes irréguliers</p>
+    <a class="brand" href="/aprender-ingles/cs/">Uč se anglicky<span>.</span></a>
+    <p class="sub">Nepravidelná slovesa</p>
   </div>
 </header>
 <main class="wrap">
-  <h1>Verbes irréguliers</h1>
-  <p class="intro">Entraîne-toi avec des questions aléatoires : écris la forme demandée et vérifie tout de suite si c'est juste. Celles que tu rates reviendront plus souvent.</p>
+  <h1>Nepravidelná slovesa</h1>
+  <p class="intro">Procvičuj si s náhodnými otázkami: napiš požadovaný tvar a hned uvidíš, jestli je správně. Chyby se vrací častěji.</p>
   <p class="setbar" id="setbar"></p>
 
-  <div class="tabs" role="tablist" aria-label="Rubriques">
-    <button class="tab" id="tab-practice" role="tab" aria-selected="true" aria-controls="view-practice">Entraînement</button>
-    <button class="tab" id="tab-review" role="tab" aria-selected="false" aria-controls="view-review">Réviser la liste</button>
-    <button class="tab" id="tab-create" role="tab" aria-selected="false" aria-controls="view-create">Créer une liste</button>
+  <div class="tabs" role="tablist" aria-label="Sekce">
+    <button class="tab" id="tab-practice" role="tab" aria-selected="true" aria-controls="view-practice">Procvičovat</button>
+    <button class="tab" id="tab-review" role="tab" aria-selected="false" aria-controls="view-review">Projít seznam</button>
+    <button class="tab" id="tab-create" role="tab" aria-selected="false" aria-controls="view-create">Vytvořit seznam</button>
   </div>
 
   <details>
-    <summary>Ce que veulent dire les symboles /.../ (prononciation)</summary>
+    <summary>Co znamenají symboly /.../ (výslovnost)</summary>
     <div class="body">
-      <p>Les symboles entre barres, comme /ɡəʊ/, sont la <b>transcription phonétique (API)</b> : ils indiquent comment le mot se prononce en <b>anglais britannique</b>, son par son.</p>
+      <p>Symboly mezi lomítky, jako /ɡəʊ/, jsou <b>fonetický přepis (IPA)</b>: ukazují, jak slovo zní v <b>britské angličtině</b>, hlásku po hlásce.</p>
       <ul>
-        <li>ˈ marque la syllabe accentuée : /bɪˈɡɪn/ se dit be-GIN.</li>
-        <li>ː allonge la voyelle : /iː/ est un « i » long.</li>
-        <li>/ə/ est la voyelle relâchée la plus fréquente en anglais, comme le a de « about ».</li>
-        <li>Si les symboles te gênent, pas de problème : touche le haut-parleur 🔊 et écoute le mot.</li>
+        <li>ˈ značí přízvučnou slabiku: /bɪˈɡɪn/ se vyslovuje be-GIN.</li>
+        <li>ː prodlužuje samohlásku: /iː/ je dlouhé „i”.</li>
+        <li>/ə/ je nejčastější neurčitá samohláska angličtiny, jako a ve slově „about”.</li>
+        <li>Když ti symboly dělají potíže, nevadí: klepni na reproduktor 🔊 a poslechni si slovo.</li>
       </ul>
     </div>
   </details>
 
   <section id="view-practice" role="tabpanel" aria-labelledby="tab-practice">
     <div class="stats">
-      <p>Questions : <b id="s-total">0</b> · Réussies : <b id="s-ok" class="n-ok">0</b> · Ratées : <b id="s-bad" class="n-bad">0</b></p>
-      <button class="btn ghost" id="restart" type="button">Recommencer</button>
+      <p>Otázky: <b id="s-total">0</b> · Správně: <b id="s-ok" class="n-ok">0</b> · Špatně: <b id="s-bad" class="n-bad">0</b></p>
+      <button class="btn ghost" id="restart" type="button">Začít znovu</button>
     </div>
 
     <div class="card">
-      <p class="q-label" id="q-label">Infinitif de</p>
+      <p class="q-label" id="q-label">Infinitiv slovesa:</p>
       <p class="q-word" id="q-word">…</p>
       <p class="q-hint" id="q-hint"></p>
       <form id="answer-form" autocomplete="off">
         <div class="answer-row">
-          <label for="answer" class="sub" style="position:absolute;left:-9999px">Ta réponse en anglais</label>
-          <input id="answer" name="answer" type="text" inputmode="text" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="send" placeholder="Ta réponse en anglais"/>
-          <button class="btn" id="check" type="submit">Vérifier</button>
+          <label for="answer" class="sub" style="position:absolute;left:-9999px">Tvoje odpověď anglicky</label>
+          <input id="answer" name="answer" type="text" inputmode="text" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="send" placeholder="Tvoje odpověď anglicky"/>
+          <button class="btn" id="check" type="submit">Zkontrolovat</button>
         </div>
       </form>
       <div class="feedback" id="feedback" aria-live="polite"></div>
       <div class="next-row" id="next-row">
-        <button class="btn" id="next" type="button">Question suivante</button>
+        <button class="btn" id="next" type="button">Další otázka</button>
       </div>
     </div>
-    <p class="note">La progression ne vaut que pour cette session : ferme ou recharge la page et tout repart de zéro.</p>
+    <p class="note">Pokrok se počítá jen v tomto sezení: zavřeš-li nebo obnovíš stránku, vše se vynuluje.</p>
 
     <details id="correcciones-hoja" style="display:none">
-      <summary>Corrections de la fiche</summary>
+      <summary>Opravy cvičení</summary>
       <div class="body">
         <ul>
           <li></li>
@@ -206,29 +206,29 @@ button.play:hover{border-color:var(--acid)}
 
   <section id="view-review" role="tabpanel" aria-labelledby="tab-review" hidden>
     <div class="search-row">
-      <label for="search" class="sub" style="position:absolute;left:-9999px">Chercher un verbe</label>
-      <input id="search" type="search" inputmode="search" placeholder="Cherche en anglais (p. ex. make, go, went)"/>
+      <label for="search" class="sub" style="position:absolute;left:-9999px">Hledat sloveso</label>
+      <input id="search" type="search" inputmode="search" placeholder="Hledej anglicky (např. make, go, went)"/>
     </div>
     <div class="table-scroll">
       <table>
         <thead>
-          <tr><th>Signification</th><th>Infinitif</th><th>Prétérit</th><th>Participe passé</th></tr>
+          <tr><th>Význam</th><th>Infinitiv</th><th>Minulý čas</th><th>Příčestí minulé</th></tr>
         </thead>
         <tbody id="verb-rows"></tbody>
       </table>
-      <p class="empty" id="empty">Aucun verbe ne correspond à ta recherche.</p>
+      <p class="empty" id="empty">Žádné sloveso neodpovídá hledání.</p>
     </div>
   </section>
 
   <section id="view-create" role="tabpanel" aria-labelledby="tab-create" hidden>
     <div class="card">
-      <p>Coche les verbes que tu veux dans le catalogue complet et copie le lien : qui l'ouvrira s'entraînera uniquement sur cette sélection, avec son audio et sa phonétique.</p>
-      <p><input id="cl-filter" type="search" inputmode="search" placeholder="Filtre les verbes (p. ex. eat, go, write)" style="width:100%;box-sizing:border-box;background:#0d0f12;border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:8px;font-size:15px"/></p>
+      <p>Vyber si slovesa a zkopíruj odkaz: kdo ho otevře, procvičuje jen tvůj výběr, se zvukem a fonetickým přepisem.</p>
+      <p><input id="cl-filter" type="search" inputmode="search" placeholder="Filtrovat slovesa (např. eat, go, write)" style="width:100%;box-sizing:border-box;background:#0d0f12;border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:8px;font-size:15px"/></p>
       <div id="cl-verbs" class="cl-grid"></div>
       <p class="cl-actions">
-        <button class="btn ghost" id="cl-all" type="button">Tout sélectionner</button>
-        <button class="btn ghost" id="cl-none" type="button">Tout désélectionner</button>
-        <button class="btn" id="cl-copy" type="button">Copier le lien de la liste</button>
+        <button class="btn ghost" id="cl-all" type="button">Vybrat vše</button>
+        <button class="btn ghost" id="cl-none" type="button">Zrušit výběr</button>
+        <button class="btn" id="cl-copy" type="button">Kopírovat odkaz na seznam</button>
       </p>
       <p id="cl-msg" class="cl-msg" aria-live="polite"></p>
     </div>
@@ -236,51 +236,51 @@ button.play:hover{border-color:var(--acid)}
 </main>
 <footer>
   <div class="wrap">
-    <p>Fait par Raúl · <a href="https://raulbaeza15.github.io/">raulbaeza15.github.io</a></p>
-    <p class="langnav">Langues: <a href="/aprender-ingles/">Español</a> · <a href="/aprender-ingles/en/">English</a> · <strong>Français</strong> · <a href="/aprender-ingles/de/">Deutsch</a> · <a href="/aprender-ingles/pt/">Português</a> · <a href="/aprender-ingles/it/">Italiano</a> · <a href="/aprender-ingles/tr/">Türkçe</a> · <a href="/aprender-ingles/nl/">Nederlands</a> · <a href="/aprender-ingles/pl/">Polski</a> · <a href="/aprender-ingles/sv/">Svenska</a> · <a href="/aprender-ingles/da/">Dansk</a> · <a href="/aprender-ingles/no/">Norsk</a> · <a href="/aprender-ingles/fi/">Suomi</a> · <a href="/aprender-ingles/ro/">Română</a> · <a href="/aprender-ingles/hu/">Magyar</a> · <a href="/aprender-ingles/cs/">Čeština</a></p>
+    <p>Vytvořil Raúl · <a href="https://raulbaeza15.github.io/">raulbaeza15.github.io</a></p>
+    <p class="langnav">Jazyky: <a href="/aprender-ingles/">Español</a> · <a href="/aprender-ingles/en/">English</a> · <a href="/aprender-ingles/fr/">Français</a> · <a href="/aprender-ingles/de/">Deutsch</a> · <a href="/aprender-ingles/pt/">Português</a> · <a href="/aprender-ingles/it/">Italiano</a> · <a href="/aprender-ingles/tr/">Türkçe</a> · <a href="/aprender-ingles/nl/">Nederlands</a> · <a href="/aprender-ingles/pl/">Polski</a> · <a href="/aprender-ingles/sv/">Svenska</a> · <a href="/aprender-ingles/da/">Dansk</a> · <a href="/aprender-ingles/no/">Norsk</a> · <a href="/aprender-ingles/fi/">Suomi</a> · <a href="/aprender-ingles/ro/">Română</a> · <a href="/aprender-ingles/hu/">Magyar</a> · <strong>Čeština</strong></p>
   </div>
 </footer>
 <script src="catalog.js"></script>
 <script>
 /*LOGIC-START*/
 var VERBS_ALL=[
-{"es":"APPRENDRE","inf":"learn","past":"learnt / learned","pp":"learnt / learned","acc":{inf:["learn"],past:["learnt","learned","learnt/learned","learnt / learned"],pp:["learnt","learned","learnt/learned","learnt / learned"]}},
-{"es":"CHANTER","inf":"sing","past":"sang","pp":"sung","acc":{inf:["sing"],past:["sang"],pp:["sung"]}},
-{"es":"MANGER","inf":"eat","past":"ate","pp":"eaten","acc":{inf:["eat"],past:["ate"],pp:["eaten"]}},
-{"es":"CONSTRUIRE","inf":"build","past":"built","pp":"built","acc":{inf:["build"],past:["built"],pp:["built"]}},
-{"es":"DIRE","inf":"say","past":"said","pp":"said","acc":{inf:["say"],past:["said"],pp:["said"]}},
-{"es":"COMMENCER","inf":"begin","past":"began","pp":"begun","acc":{inf:["begin"],past:["began"],pp:["begun"]}},
-{"es":"ÉCRIRE","inf":"write","past":"wrote","pp":"written","acc":{inf:["write"],past:["wrote"],pp:["written"]}},
-{"es":"DÉPENSER, PASSER (TEMPS)","inf":"spend","past":"spent","pp":"spent","acc":{inf:["spend"],past:["spent"],pp:["spent"]}},
-{"es":"PARLER","inf":"speak","past":"spoke","pp":"spoken","acc":{inf:["speak"],past:["spoke"],pp:["spoken"]}},
-{"es":"FAIRE, FABRIQUER","inf":"make","past":"made","pp":"made","acc":{inf:["make"],past:["made"],pp:["made"]}},
-{"es":"BLESSER, FAIRE MAL","inf":"hurt","past":"hurt","pp":"hurt","acc":{inf:["hurt"],past:["hurt"],pp:["hurt"]}},
-{"es":"ALLER","inf":"go","past":"went","pp":"gone","acc":{inf:["go"],past:["went"],pp:["gone"]}},
-{"es":"OBTENIR, RECEVOIR","inf":"get","past":"got","pp":"got","acc":{inf:["get"],past:["got"],pp:["got","gotten"]}},
-{"es":"OUBLIER","inf":"forget","past":"forgot","pp":"forgotten","acc":{inf:["forget"],past:["forgot"],pp:["forgotten"]}},
-{"es":"PERDRE","inf":"lose","past":"lost","pp":"lost","acc":{inf:["lose"],past:["lost"],pp:["lost"]}},
-{"es":"VOLER, DÉROBER","inf":"steal","past":"stole","pp":"stolen","acc":{inf:["steal"],past:["stole"],pp:["stolen"]}},
-{"es":"PARTIR, QUITTER, LAISSER","inf":"leave","past":"left","pp":"left","acc":{inf:["leave"],past:["left"],pp:["left"]}},
-{"es":"ÊTRE","inf":"be","past":"was / were","pp":"been","acc":{inf:["be"],past:["was","were","was/were","was / were"],pp:["been"]}},
-{"es":"VENIR","inf":"come","past":"came","pp":"come","acc":{inf:["come"],past:["came"],pp:["come"]}},
-{"es":"VOIR","inf":"see","past":"saw","pp":"seen","acc":{inf:["see"],past:["saw"],pp:["seen"]}},
-{"es":"METTRE, POSER","inf":"put","past":"put","pp":"put","acc":{inf:["put"],past:["put"],pp:["put"]}},
-{"es":"SONNER, TÉLÉPHONER","inf":"ring","past":"rang","pp":"rung","acc":{inf:["ring"],past:["rang"],pp:["rung"]}},
-{"es":"COURIR","inf":"run","past":"ran","pp":"run","acc":{inf:["run"],past:["ran"],pp:["run"]}},
-{"es":"CASSER, ROMPRE","inf":"break","past":"broke","pp":"broken","acc":{inf:["break"],past:["broke"],pp:["broken"]}},
-{"es":"VENDRE","inf":"sell","past":"sold","pp":"sold","acc":{inf:["sell"],past:["sold"],pp:["sold"]}},
-{"es":"BOIRE","inf":"drink","past":"drank","pp":"drunk","acc":{inf:["drink"],past:["drank"],pp:["drunk"]}},
-{"es":"ACHETER","inf":"buy","past":"bought","pp":"bought","acc":{inf:["buy"],past:["bought"],pp:["bought"]}},
-{"es":"DESSINER, TIRER","inf":"draw","past":"drew","pp":"drawn","acc":{inf:["draw"],past:["drew"],pp:["drawn"]}},
-{"es":"ENTENDRE","inf":"hear","past":"heard","pp":"heard","acc":{inf:["hear"],past:["heard"],pp:["heard"]}},
-{"es":"NOURRIR","inf":"feed","past":"fed","pp":"fed","acc":{inf:["feed"],past:["fed"],pp:["fed"]}},
-{"es":"GAGNER","inf":"win","past":"won","pp":"won","acc":{inf:["win"],past:["won"],pp:["won"]}},
-{"es":"FAIRE","inf":"do","past":"did","pp":"done","acc":{inf:["do"],past:["did"],pp:["done"]}},
-{"es":"RENCONTRER, RETROUVER","inf":"meet","past":"met","pp":"met","acc":{inf:["meet"],past:["met"],pp:["met"]}},
-{"es":"DONNER","inf":"give","past":"gave","pp":"given","acc":{inf:["give"],past:["gave"],pp:["given"]}},
-{"es":"TOMBER","inf":"fall","past":"fell","pp":"fallen","acc":{inf:["fall"],past:["fell"],pp:["fallen"]}},
-{"es":"COUPER","inf":"cut","past":"cut","pp":"cut","acc":{inf:["cut"],past:["cut"],pp:["cut"]}},
-{"es":"AVOIR","inf":"have","past":"had","pp":"had","acc":{inf:["have"],past:["had"],pp:["had"]}}
+{"es":"UČIT SE","inf":"learn","past":"learnt / learned","pp":"learnt / learned","acc":{inf:["learn"],past:["learnt","learned","learnt/learned","learnt / learned"],pp:["learnt","learned","learnt/learned","learnt / learned"]}},
+{"es":"ZPÍVAT","inf":"sing","past":"sang","pp":"sung","acc":{inf:["sing"],past:["sang"],pp:["sung"]}},
+{"es":"JÍST","inf":"eat","past":"ate","pp":"eaten","acc":{inf:["eat"],past:["ate"],pp:["eaten"]}},
+{"es":"STAVĚT","inf":"build","past":"built","pp":"built","acc":{inf:["build"],past:["built"],pp:["built"]}},
+{"es":"ŘÍCT","inf":"say","past":"said","pp":"said","acc":{inf:["say"],past:["said"],pp:["said"]}},
+{"es":"ZAČÍT","inf":"begin","past":"began","pp":"begun","acc":{inf:["begin"],past:["began"],pp:["begun"]}},
+{"es":"PSÁT","inf":"write","past":"wrote","pp":"written","acc":{inf:["write"],past:["wrote"],pp:["written"]}},
+{"es":"UTRATIT, STRÁVIT","inf":"spend","past":"spent","pp":"spent","acc":{inf:["spend"],past:["spent"],pp:["spent"]}},
+{"es":"MLUVIT","inf":"speak","past":"spoke","pp":"spoken","acc":{inf:["speak"],past:["spoke"],pp:["spoken"]}},
+{"es":"UDĚLAT, VYROBIT","inf":"make","past":"made","pp":"made","acc":{inf:["make"],past:["made"],pp:["made"]}},
+{"es":"ZRANIT, BOLET","inf":"hurt","past":"hurt","pp":"hurt","acc":{inf:["hurt"],past:["hurt"],pp:["hurt"]}},
+{"es":"JÍT","inf":"go","past":"went","pp":"gone","acc":{inf:["go"],past:["went"],pp:["gone"]}},
+{"es":"ZÍSKAT, DOSTAT","inf":"get","past":"got","pp":"got","acc":{inf:["get"],past:["got"],pp:["got","gotten"]}},
+{"es":"ZAPOMENOUT","inf":"forget","past":"forgot","pp":"forgotten","acc":{inf:["forget"],past:["forgot"],pp:["forgotten"]}},
+{"es":"ZTRATIT","inf":"lose","past":"lost","pp":"lost","acc":{inf:["lose"],past:["lost"],pp:["lost"]}},
+{"es":"KRÁST","inf":"steal","past":"stole","pp":"stolen","acc":{inf:["steal"],past:["stole"],pp:["stolen"]}},
+{"es":"ODEJÍT, OPUSTIT","inf":"leave","past":"left","pp":"left","acc":{inf:["leave"],past:["left"],pp:["left"]}},
+{"es":"BÝT","inf":"be","past":"was / were","pp":"been","acc":{inf:["be"],past:["was","were","was/were","was / were"],pp:["been"]}},
+{"es":"PŘIJÍT","inf":"come","past":"came","pp":"come","acc":{inf:["come"],past:["came"],pp:["come"]}},
+{"es":"VIDĚT","inf":"see","past":"saw","pp":"seen","acc":{inf:["see"],past:["saw"],pp:["seen"]}},
+{"es":"POLOŽIT, DÁT","inf":"put","past":"put","pp":"put","acc":{inf:["put"],past:["put"],pp:["put"]}},
+{"es":"ZNĚT, TELEFONOVAT","inf":"ring","past":"rang","pp":"rung","acc":{inf:["ring"],past:["rang"],pp:["rung"]}},
+{"es":"BĚŽET","inf":"run","past":"ran","pp":"run","acc":{inf:["run"],past:["ran"],pp:["run"]}},
+{"es":"ROZBÍT, ZLOMIT","inf":"break","past":"broke","pp":"broken","acc":{inf:["break"],past:["broke"],pp:["broken"]}},
+{"es":"PRODAT","inf":"sell","past":"sold","pp":"sold","acc":{inf:["sell"],past:["sold"],pp:["sold"]}},
+{"es":"PÍT","inf":"drink","past":"drank","pp":"drunk","acc":{inf:["drink"],past:["drank"],pp:["drunk"]}},
+{"es":"KOUPIT","inf":"buy","past":"bought","pp":"bought","acc":{inf:["buy"],past:["bought"],pp:["bought"]}},
+{"es":"KRESLIT","inf":"draw","past":"drew","pp":"drawn","acc":{inf:["draw"],past:["drew"],pp:["drawn"]}},
+{"es":"SLYŠET","inf":"hear","past":"heard","pp":"heard","acc":{inf:["hear"],past:["heard"],pp:["heard"]}},
+{"es":"KRMIT, ŽIVIT","inf":"feed","past":"fed","pp":"fed","acc":{inf:["feed"],past:["fed"],pp:["fed"]}},
+{"es":"VYHRÁT","inf":"win","past":"won","pp":"won","acc":{inf:["win"],past:["won"],pp:["won"]}},
+{"es":"DĚLAT","inf":"do","past":"did","pp":"done","acc":{inf:["do"],past:["did"],pp:["done"]}},
+{"es":"SETKAT SE, POZNAT","inf":"meet","past":"met","pp":"met","acc":{inf:["meet"],past:["met"],pp:["met"]}},
+{"es":"DÁT","inf":"give","past":"gave","pp":"given","acc":{inf:["give"],past:["gave"],pp:["given"]}},
+{"es":"PADAT","inf":"fall","past":"fell","pp":"fallen","acc":{inf:["fall"],past:["fell"],pp:["fallen"]}},
+{"es":"STŘÍHAT, ŘÍZAT","inf":"cut","past":"cut","pp":"cut","acc":{inf:["cut"],past:["cut"],pp:["cut"]}},
+{"es":"MÍT","inf":"have","past":"had","pp":"had","acc":{inf:["have"],past:["had"],pp:["had"]}}
 ];
 var PRON_ALL=[{"inf":[["learn","/lɜːn/"]],"past":[["learnt","/lɜːnt/"],["learned","/lɜːnd/"]],"pp":[["learnt","/lɜːnt/"],["learned","/lɜːnd/"]]},{"inf":[["sing","/sɪŋ/"]],"past":[["sang","/sæŋ/"]],"pp":[["sung","/sʌŋ/"]]},{"inf":[["eat","/iːt/"]],"past":[["ate","/et/"]],"pp":[["eaten","/ˈiːtən/"]]},{"inf":[["build","/bɪld/"]],"past":[["built","/bɪlt/"]],"pp":[["built","/bɪlt/"]]},{"inf":[["say","/seɪ/"]],"past":[["said","/sed/"]],"pp":[["said","/sed/"]]},{"inf":[["begin","/bɪˈɡɪn/"]],"past":[["began","/bɪˈɡæn/"]],"pp":[["begun","/bɪˈɡʌn/"]]},{"inf":[["write","/raɪt/"]],"past":[["wrote","/rəʊt/"]],"pp":[["written","/ˈrɪtən/"]]},{"inf":[["spend","/spend/"]],"past":[["spent","/spent/"]],"pp":[["spent","/spent/"]]},{"inf":[["speak","/spiːk/"]],"past":[["spoke","/spəʊk/"]],"pp":[["spoken","/ˈspəʊkən/"]]},{"inf":[["make","/meɪk/"]],"past":[["made","/meɪd/"]],"pp":[["made","/meɪd/"]]},{"inf":[["hurt","/hɜːt/"]],"past":[["hurt","/hɜːt/"]],"pp":[["hurt","/hɜːt/"]]},{"inf":[["go","/ɡəʊ/"]],"past":[["went","/went/"]],"pp":[["gone","/ɡɒn/"]]},{"inf":[["get","/ɡet/"]],"past":[["got","/ɡɒt/"]],"pp":[["got","/ɡɒt/"]]},{"inf":[["forget","/fəˈɡet/"]],"past":[["forgot","/fəˈɡɒt/"]],"pp":[["forgotten","/fəˈɡɒtən/"]]},{"inf":[["lose","/luːz/"]],"past":[["lost","/lɒst/"]],"pp":[["lost","/lɒst/"]]},{"inf":[["steal","/stiːl/"]],"past":[["stole","/stəʊl/"]],"pp":[["stolen","/ˈstəʊlən/"]]},{"inf":[["leave","/liːv/"]],"past":[["left","/left/"]],"pp":[["left","/left/"]]},{"inf":[["be","/biː/"]],"past":[["was / were","/wɒz/ · /wɜː/","was-were"]],"pp":[["been","/biːn/"]]},{"inf":[["come","/kʌm/"]],"past":[["came","/keɪm/"]],"pp":[["come","/kʌm/"]]},{"inf":[["see","/siː/"]],"past":[["saw","/sɔː/"]],"pp":[["seen","/siːn/"]]},{"inf":[["put","/pʊt/"]],"past":[["put","/pʊt/"]],"pp":[["put","/pʊt/"]]},{"inf":[["ring","/rɪŋ/"]],"past":[["rang","/ræŋ/"]],"pp":[["rung","/rʌŋ/"]]},{"inf":[["run","/rʌn/"]],"past":[["ran","/ræn/"]],"pp":[["run","/rʌn/"]]},{"inf":[["break","/breɪk/"]],"past":[["broke","/brəʊk/"]],"pp":[["broken","/ˈbrəʊkən/"]]},{"inf":[["sell","/sel/"]],"past":[["sold","/səʊld/"]],"pp":[["sold","/səʊld/"]]},{"inf":[["drink","/drɪŋk/"]],"past":[["drank","/dræŋk/"]],"pp":[["drunk","/drʌŋk/"]]},{"inf":[["buy","/baɪ/"]],"past":[["bought","/bɔːt/"]],"pp":[["bought","/bɔːt/"]]},{"inf":[["draw","/drɔː/"]],"past":[["drew","/druː/"]],"pp":[["drawn","/drɔːn/"]]},{"inf":[["hear","/hɪə/"]],"past":[["heard","/hɜːd/"]],"pp":[["heard","/hɜːd/"]]},{"inf":[["feed","/fiːd/"]],"past":[["fed","/fed/"]],"pp":[["fed","/fed/"]]},{"inf":[["win","/wɪn/"]],"past":[["won","/wʌn/"]],"pp":[["won","/wʌn/"]]},{"inf":[["do","/duː/"]],"past":[["did","/dɪd/"]],"pp":[["done","/dʌn/"]]},{"inf":[["meet","/miːt/"]],"past":[["met","/met/"]],"pp":[["met","/met/"]]},{"inf":[["give","/ɡɪv/"]],"past":[["gave","/ɡeɪv/"]],"pp":[["given","/ˈɡɪvən/"]]},{"inf":[["fall","/fɔːl/"]],"past":[["fell","/fel/"]],"pp":[["fallen","/ˈfɔːlən/"]]},{"inf":[["cut","/kʌt/"]],"past":[["cut","/kʌt/"]],"pp":[["cut","/kʌt/"]]},{"inf":[["have","/hæv/"]],"past":[["had","/hæd/"]],"pp":[["had","/hæd/"]]}];
 var FORMS=["inf","past","pp"];
@@ -330,8 +330,8 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
 /*LOGIC-END*/
 
 (function(){
-  var FORM_LABELS={inf:"Infinitif",past:"Prétérit",pp:"Participe passé"};
-  function fbDetail(f,gloss,form){ return FORM_LABELS[f]+' de '+gloss+' est <b>'+form+'</b>'; }
+  var FORM_LABELS={inf:"Infinitiv",past:"Minulý čas",pp:"Příčestí minulé"};
+  function fbDetail(f,gloss,form){ return FORM_LABELS[f]+' slovesa '+gloss+' je <b>'+form+'</b>'; }
   var weights={};
   var stats={total:0,ok:0,bad:0};
   var current=null;
@@ -358,10 +358,10 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     var v=VERBS[vi];
     current={key:key,verb:v,form:f,vi:vi};
     answered=false;
-    qLabel.textContent=FORM_LABELS[f]+" de";
+    qLabel.textContent=FORM_LABELS[f]+" slovesa:";
     qWord.textContent=v.es;
     if(f==="inf"){qHint.innerHTML=""}
-    else{qHint.innerHTML="Infinitif: <b>"+v.inf+"</b>"}
+    else{qHint.innerHTML="Infinitiv: <b>"+v.inf+"</b>"}
     input.value="";
     input.disabled=false;
     document.getElementById("check").disabled=false;
@@ -372,13 +372,13 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
   }
 
   function playBtn(w,label,fileKey){
-    return '<button type="button" class="play" data-src="/aprender-ingles/audio/'+(fileKey||w)+'.mp3" aria-label="Écouter '+label+'">🔊</button>';
+    return '<button type="button" class="play" data-src="/aprender-ingles/audio/'+(fileKey||w)+'.mp3" aria-label="Poslechnout: '+label+'">🔊</button>';
   }
   function pronHtml(vi,forms){
     var p=PRON[vi];
     if(!p)return '';
     var out='';
-    var labels={inf:'Infinitif',past:'Prétérit',pp:'Participe passé'};
+    var labels={inf:'Infinitiv',past:'Minulý čas',pp:'Příčestí minulé'};
     for(var i=0;i<forms.length;i++){
       var f=forms[i];
       var vars=(p[f]||[]);
@@ -407,11 +407,11 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     var correctForm=v[f];
     if(ok){
       feedback.className="feedback show ok";
-      feedback.innerHTML='<p class="f-title">Correct.</p><p class="f-detail">'+fbDetail(f,v.es,correctForm)+'.</p>'+trioHtml(v,current.vi);
+      feedback.innerHTML='<p class="f-title">Správně.</p><p class="f-detail">'+fbDetail(f,v.es,correctForm)+'.</p>'+trioHtml(v,current.vi);
     }else{
       feedback.className="feedback show bad";
-      var detail=input.value.trim()?('Tu as écrit « '+input.value.trim()+' ». '):'';
-      feedback.innerHTML='<p class="f-title">Pas tout à fait.</p><p class="f-detail">'+detail+fbDetail(f,v.es,correctForm)+'. Celui-ci reviendra.</p>'+trioHtml(v,current.vi);
+      var detail=input.value.trim()?('Napsal(a) jsi „'+input.value.trim()+'”. '):'';
+      feedback.innerHTML='<p class="f-title">Ne úplně.</p><p class="f-detail">'+detail+fbDetail(f,v.es,correctForm)+'. Ještě se vrátí.</p>'+trioHtml(v,current.vi);
     }
     input.disabled=true;
     document.getElementById("check").disabled=true;
@@ -453,7 +453,7 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     var p=PRON[vi];
     function cell(form,plain){
       if(!p||!(p[form]||[]).length)return '<td class="en">'+plain+'</td>';
-      var labels={inf:'Infinitif',past:'Prétérit',pp:'Participe passé'};
+      var labels={inf:'Infinitiv',past:'Minulý čas',pp:'Příčestí minulé'};
       var bits='';
       (p[form]||[]).forEach(function(pr){
         bits+='<span class="pv">'+playBtn(pr[0],labels[form]+': '+pr[0],pr[2])+'<span class="pc"><span>'+pr[0]+'</span><span class="ipa">'+pr[1]+'</span></span></span>';
@@ -489,11 +489,11 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
   if(MODE!=="class"){var ch=document.getElementById("correcciones-hoja");if(ch)ch.style.display="none"}
   var setbar=document.getElementById("setbar");
   if(MODE==="custom"){setbar.classList.add("custom");
-    setbar.innerHTML='Liste personnalisée · '+VERBS.length+(VERBS.length===1?' verbe':' verbes')+' · <a href="/aprender-ingles/fr/">Retour à la liste de la classe</a>';
+    setbar.innerHTML='Vlastní seznam · '+VERBS.length+' sloves · <a href="/aprender-ingles/cs/">Zpět na seznam třídy</a>';
   }else if(MODE==="catalog"){setbar.classList.add("custom");
-    setbar.innerHTML='Catalogue complet · '+VERBS.length+' verbes · <a href="/aprender-ingles/fr/">Retour à la liste de la classe</a>';
+    setbar.innerHTML='Celý katalog · '+VERBS.length+' sloves · <a href="/aprender-ingles/cs/">Zpět na seznam třídy</a>';
   }else{
-    setbar.innerHTML='Liste de la classe · '+VERBS.length+' verbes'+(CAT_OK?' · <a href="#l=todos">Voir le catalogue complet ('+VERBS_CATALOG.length+')</a>':'');
+    setbar.innerHTML='Seznam třídy · '+VERBS.length+' sloves'+(CAT_OK?' · <a href="#l=todos">Na celý katalog ('+VERBS_CATALOG.length+')</a>':'');
   }
 
   var clGrid=document.getElementById("cl-verbs");
@@ -521,9 +521,9 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
   document.getElementById("cl-none").addEventListener("click",function(){clBoxes.forEach(function(c){c.checked=false})});
   document.getElementById("cl-copy").addEventListener("click",function(){
     var sel=clBoxes.filter(function(c){return c.checked}).map(function(c){return c.value});
-    if(!sel.length){clMsg.textContent="Coche au moins un verbe.";return}
+    if(!sel.length){clMsg.textContent="Vyber alespoň jedno sloveso.";return}
     var url=location.origin+location.pathname+"#l="+sel.join("-");
-    function done(){clMsg.textContent="Lien copié : "+sel.length+(sel.length===1?" verbe.":" verbes.")}
+    function done(){clMsg.textContent="Odkaz zkopírován: "+sel.length+" sloves."}
     function fallback(){
       var ta=document.createElement("textarea");
       ta.value=url;document.body.appendChild(ta);ta.select();

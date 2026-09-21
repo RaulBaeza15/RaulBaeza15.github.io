@@ -189,7 +189,7 @@ button.play:hover{border-color:var(--acid)}
     </div>
     <p class="note">El progreso es solo de esta sesión: si cierras o recargas la página, se empieza de cero.</p>
 
-    <details>
+    <details id="correcciones-hoja">
       <summary>Correcciones de la hoja</summary>
       <div class="body">
         <ul>
@@ -480,6 +480,7 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
   });
 
   /* conjuntos: barra de estado y creador de listas */
+  if(MODE!=="class"){var ch=document.getElementById("correcciones-hoja");if(ch)ch.style.display="none"}
   var setbar=document.getElementById("setbar");
   if(MODE==="custom"){setbar.classList.add("custom");
     setbar.innerHTML='Lista personalizada · '+VERBS.length+(VERBS.length===1?' verbo':' verbos')+' · <a href="/aprender-ingles/">Volver a la lista de clase</a>';

@@ -92,6 +92,21 @@ details .body ul{margin:0;padding-left:20px}
 details .body li{margin-bottom:8px}
 footer{border-top:1px solid var(--line);color:var(--muted);padding:24px 0 40px;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
 footer a:hover{color:var(--acid)}
+
+/* pronunciacion */
+.pv{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pv + .pv{margin-top:6px}
+.ipa{color:var(--muted);font-size:14px;font-family:Manrope,Arial,sans-serif}
+button.play{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;background:transparent;border:1px solid var(--line);color:var(--acid);font-size:17px;cursor:pointer;padding:0;border-radius:6px;line-height:1}
+button.play:hover{border-color:var(--acid)}
+.pron-list{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.pron-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+.pron-line .fl{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:110px}
+.pron-line .fw{font-family:"DM Mono",monospace;font-size:15px;color:var(--text)}
+@media (max-width:560px){
+  .pron-line .fl{min-width:0;width:100%}
+  button.play{min-width:48px;min-height:48px}
+}
 @media (max-width:560px){
   .card{padding:24px 18px}
   td,th{padding:10px 12px}
@@ -118,6 +133,19 @@ footer a:hover{color:var(--acid)}
     <button class="tab" id="tab-practice" role="tab" aria-selected="true" aria-controls="view-practice">Practicar</button>
     <button class="tab" id="tab-review" role="tab" aria-selected="false" aria-controls="view-review">Repasar la lista</button>
   </div>
+
+  <details>
+    <summary>Qué significan los símbolos /.../ (pronunciación)</summary>
+    <div class="body">
+      <p>Los símbolos entre barras, como /ɡəʊ/, son la <b>transcripción fonética (IPA)</b>: te dicen cómo suena la palabra en <b>inglés británico</b>, letra por sonido.</p>
+      <ul>
+        <li>ˈ marca la sílaba fuerte: /bɪˈɡɪn/ se dice bi-GUIN.</li>
+        <li>ː alarga la vocal: /iː/ es una «i» larga.</li>
+        <li>/ə/ es la «e» relajada más común del inglés, como la e final de «gente».</li>
+        <li>Si los símbolos te lian, no pasa nada: pulsa el altavoz 🔊 y escucha la palabra.</li>
+      </ul>
+    </div>
+  </details>
 
   <section id="view-practice" role="tabpanel" aria-labelledby="tab-practice">
     <div class="stats">
@@ -216,6 +244,8 @@ var VERBS=[
 {es:"CORTAR",inf:"cut",past:"cut",pp:"cut",acc:{inf:["cut"],past:["cut"],pp:["cut"]}},
 {es:"TENER",inf:"have",past:"had",pp:"had",acc:{inf:["have"],past:["had"],pp:["had"]}}
 ];
+var PRON={};
+PRON[17]={"inf": [["be", "/biː/"]], "past": [["was / were", "/wɒz/ · /wɜː/", "was-were"]], "pp": [["been", "/biːn/"]]};
 var FORMS=["inf","past","pp"];
 function norm(s){return String(s==null?"":s).toLowerCase().trim().replace(/\s+/g," ")}
 function isCorrect(answer,accepted){var n=norm(answer);if(!n)return false;for(var i=0;i<accepted.length;i++){if(norm(accepted[i])===n)return true}return false}
@@ -261,7 +291,7 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     var vi=parseInt(parts[0],10);
     var f=parts[1];
     var v=VERBS[vi];
-    current={key:key,verb:v,form:f};
+    current={key:key,verb:v,form:f,vi:vi};
     answered=false;
     qLabel.textContent=FORM_LABELS[f]+" de";
     qWord.textContent=v.es;
@@ -276,8 +306,28 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     input.focus();
   }
 
-  function trioHtml(v){
-    return '<div class="trio">'+v.es+': <b>'+v.inf+'</b> · <b>'+v.past+'</b> · <b>'+v.pp+'</b></div>';
+  function playBtn(w,label,fileKey){
+    return '<button type="button" class="play" data-src="audio/'+(fileKey||w)+'.mp3" aria-label="Escuchar '+label+'">🔊</button>';
+  }
+  function pronHtml(vi,forms){
+    var p=PRON[vi];
+    if(!p)return '';
+    var out='';
+    var labels={inf:'Infinitivo',past:'Pasado',pp:'Participio'};
+    for(var i=0;i<forms.length;i++){
+      var f=forms[i];
+      var vars=(p[f]||[]);
+      if(!vars.length)continue;
+      var bits='';
+      for(var j=0;j<vars.length;j++){
+        bits+='<span class="pv">'+playBtn(vars[j][0],labels[f]+': '+vars[j][0],vars[j][2])+'<span class="fw">'+vars[j][0]+'</span><span class="ipa">'+vars[j][1]+'</span></span>';
+      }
+      out+='<div class="pron-line"><span class="fl">'+labels[f]+'</span>'+bits+'</div>';
+    }
+    return out?'<div class="pron-list">'+out+'</div>':'';
+  }
+  function trioHtml(v,vi){
+    return '<div class="trio">'+v.es+': <b>'+v.inf+'</b> · <b>'+v.past+'</b> · <b>'+v.pp+'</b></div>'+pronHtml(vi,['inf','past','pp']);
   }
 
   form.addEventListener("submit",function(ev){
@@ -292,11 +342,11 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     var correctForm=v[f];
     if(ok){
       feedback.className="feedback show ok";
-      feedback.innerHTML='<p class="f-title">Correcto.</p><p class="f-detail">'+FORM_LABELS[f]+' de '+v.es+' es <b>'+correctForm+'</b>.</p>'+trioHtml(v);
+      feedback.innerHTML='<p class="f-title">Correcto.</p><p class="f-detail">'+FORM_LABELS[f]+' de '+v.es+' es <b>'+correctForm+'</b>.</p>'+trioHtml(v,current.vi);
     }else{
       feedback.className="feedback show bad";
       var detail=input.value.trim()?('Has escrito «'+input.value.trim()+'». '):'';
-      feedback.innerHTML='<p class="f-title">No es correcto.</p><p class="f-detail">'+detail+FORM_LABELS[f]+' de '+v.es+' es <b>'+correctForm+'</b>. Esta te volverá a salir.</p>'+trioHtml(v);
+      feedback.innerHTML='<p class="f-title">No es correcto.</p><p class="f-detail">'+detail+FORM_LABELS[f]+' de '+v.es+' es <b>'+correctForm+'</b>. Esta te volverá a salir.</p>'+trioHtml(v,current.vi);
     }
     input.disabled=true;
     document.getElementById("check").disabled=true;
@@ -329,9 +379,19 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
   var tbody=document.getElementById("verb-rows");
   var empty=document.getElementById("empty");
   var rows=[];
-  VERBS.forEach(function(v){
+  VERBS.forEach(function(v,vi){
     var tr=document.createElement("tr");
-    tr.innerHTML='<td class="es">'+v.es+'</td><td class="en">'+v.inf+'</td><td class="en">'+v.past+'</td><td class="en">'+v.pp+'</td>';
+    var p=PRON[vi];
+    function cell(form,plain){
+      if(!p||!(p[form]||[]).length)return '<td class="en">'+plain+'</td>';
+      var labels={inf:'Infinitivo',past:'Pasado simple',pp:'Participio'};
+      var bits='';
+      (p[form]||[]).forEach(function(pr){
+        bits+='<span class="pv">'+playBtn(pr[0],labels[form]+': '+pr[0],pr[2])+'<span>'+pr[0]+'</span><span class="ipa">'+pr[1]+'</span></span>';
+      });
+      return '<td class="en">'+bits+'</td>';
+    }
+    tr.innerHTML='<td class="es">'+v.es+'</td>'+cell('inf',v.inf)+cell('past',v.past)+cell('pp',v.pp);
     tbody.appendChild(tr);
     rows.push({el:tr,hay:norm(v.es+" "+v.inf+" "+v.past+" "+v.pp)});
   });
@@ -344,6 +404,16 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
       if(show)visible++;
     });
     empty.style.display=visible?"none":"block";
+  });
+
+  var player=null;
+  document.addEventListener("click",function(ev){
+    var b=ev.target.closest("button.play");
+    if(!b)return;
+    ev.preventDefault();
+    if(player){player.pause()}
+    player=new Audio(b.getAttribute("data-src"));
+    player.play();
   });
 
   newQuestion();

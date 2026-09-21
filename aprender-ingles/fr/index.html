@@ -237,7 +237,7 @@ button.play:hover{border-color:var(--acid)}
 <footer>
   <div class="wrap">
     <p>Fait par Raúl · <a href="https://raulbaeza15.github.io/">raulbaeza15.github.io</a></p>
-    <p class="langnav">Langues: <a href="/aprender-ingles/">Español</a> · <a href="/aprender-ingles/en/">English</a> · <strong>Français</strong> · <a href="/aprender-ingles/de/">Deutsch</a> · <a href="/aprender-ingles/pt/">Português</a> · <a href="/aprender-ingles/it/">Italiano</a></p>
+    <p class="langnav">Langues: <a href="/aprender-ingles/">Español</a> · <a href="/aprender-ingles/en/">English</a> · <strong>Français</strong> · <a href="/aprender-ingles/de/">Deutsch</a> · <a href="/aprender-ingles/pt/">Português</a> · <a href="/aprender-ingles/it/">Italiano</a> · <a href="/aprender-ingles/tr/">Türkçe</a></p>
   </div>
 </footer>
 <script src="catalog.js"></script>
@@ -331,6 +331,7 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
 
 (function(){
   var FORM_LABELS={inf:"Infinitif",past:"Prétérit",pp:"Participe passé"};
+  function fbDetail(f,gloss,form){ return FORM_LABELS[f]+' de '+gloss+' est <b>'+form+'</b>'; }
   var weights={};
   var stats={total:0,ok:0,bad:0};
   var current=null;
@@ -406,11 +407,11 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     var correctForm=v[f];
     if(ok){
       feedback.className="feedback show ok";
-      feedback.innerHTML='<p class="f-title">Correct.</p><p class="f-detail">'+FORM_LABELS[f]+' de '+v.es+' est <b>'+correctForm+'</b>.</p>'+trioHtml(v,current.vi);
+      feedback.innerHTML='<p class="f-title">Correct.</p><p class="f-detail">'+fbDetail(f,v.es,correctForm)+'.</p>'+trioHtml(v,current.vi);
     }else{
       feedback.className="feedback show bad";
       var detail=input.value.trim()?('Tu as écrit « '+input.value.trim()+' ». '):'';
-      feedback.innerHTML='<p class="f-title">Pas tout à fait.</p><p class="f-detail">'+detail+FORM_LABELS[f]+' de '+v.es+' est <b>'+correctForm+'</b>. Celui-ci reviendra.</p>'+trioHtml(v,current.vi);
+      feedback.innerHTML='<p class="f-title">Pas tout à fait.</p><p class="f-detail">'+detail+fbDetail(f,v.es,correctForm)+'. Celui-ci reviendra.</p>'+trioHtml(v,current.vi);
     }
     input.disabled=true;
     document.getElementById("check").disabled=true;

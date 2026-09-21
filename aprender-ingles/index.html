@@ -237,7 +237,7 @@ button.play:hover{border-color:var(--acid)}
 <footer>
   <div class="wrap">
     <p>Hecha por Raúl · <a href="https://raulbaeza15.github.io/">raulbaeza15.github.io</a></p>
-    <p class="langnav">Idiomas: <strong>Español</strong> · <a href="/aprender-ingles/en/">English</a> · <a href="/aprender-ingles/fr/">Français</a> · <a href="/aprender-ingles/de/">Deutsch</a> · <a href="/aprender-ingles/pt/">Português</a> · <a href="/aprender-ingles/it/">Italiano</a></p>
+    <p class="langnav">Idiomas: <strong>Español</strong> · <a href="/aprender-ingles/en/">English</a> · <a href="/aprender-ingles/fr/">Français</a> · <a href="/aprender-ingles/de/">Deutsch</a> · <a href="/aprender-ingles/pt/">Português</a> · <a href="/aprender-ingles/it/">Italiano</a> · <a href="/aprender-ingles/tr/">Türkçe</a></p>
   </div>
 </footer>
 <script src="catalog.js"></script>
@@ -331,6 +331,7 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
 
 (function(){
   var FORM_LABELS={inf:"Infinitivo",past:"Pasado simple",pp:"Participio"};
+  function fbDetail(f,gloss,form){ return FORM_LABELS[f]+' de '+gloss+' es <b>'+form+'</b>'; }
   var weights={};
   var stats={total:0,ok:0,bad:0};
   var current=null;
@@ -406,11 +407,11 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     var correctForm=v[f];
     if(ok){
       feedback.className="feedback show ok";
-      feedback.innerHTML='<p class="f-title">Correcto.</p><p class="f-detail">'+FORM_LABELS[f]+' de '+v.es+' es <b>'+correctForm+'</b>.</p>'+trioHtml(v,current.vi);
+      feedback.innerHTML='<p class="f-title">Correcto.</p><p class="f-detail">'+fbDetail(f,v.es,correctForm)+'.</p>'+trioHtml(v,current.vi);
     }else{
       feedback.className="feedback show bad";
       var detail=input.value.trim()?('Has escrito «'+input.value.trim()+'». '):'';
-      feedback.innerHTML='<p class="f-title">No es correcto.</p><p class="f-detail">'+detail+FORM_LABELS[f]+' de '+v.es+' es <b>'+correctForm+'</b>. Esta te volverá a salir.</p>'+trioHtml(v,current.vi);
+      feedback.innerHTML='<p class="f-title">No es correcto.</p><p class="f-detail">'+detail+fbDetail(f,v.es,correctForm)+'. Esta te volverá a salir.</p>'+trioHtml(v,current.vi);
     }
     input.disabled=true;
     document.getElementById("check").disabled=true;

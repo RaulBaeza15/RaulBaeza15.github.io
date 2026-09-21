@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Learn English · Irregular verbs</title>
-<meta name="description" content="Practise English irregular verbs: random questions, instant correction and a review table with every verb."/>
+<title>Învață engleză · Verbe neregulate</title>
+<meta name="description" content="Exersează verbele neregulate din engleză: întrebări aleatorii, corectură imediată și tabel de recapitulare cu toate verbele."/>
 <meta name="theme-color" content="#0a0b0d"/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://raulbaeza15.github.io/aprender-ingles/en/"/>
-<link rel="canonical" href="https://raulbaeza15.github.io/aprender-ingles/en/"/>
-<meta property="og:title" content="Learn English · Irregular verbs"/>
-<meta property="og:description" content="Practise English irregular verbs: random questions, instant correction and a review table."/>
+<meta property="og:url" content="https://raulbaeza15.github.io/aprender-ingles/ro/"/>
+<link rel="canonical" href="https://raulbaeza15.github.io/aprender-ingles/ro/"/>
+<meta property="og:title" content="Învață engleză · Verbe neregulate"/>
+<meta property="og:description" content="Exersează verbele neregulate din engleză: întrebări aleatorii, corectură imediată și tabel de recapitulare."/>
 <meta property="og:image" content="https://raulbaeza15.github.io/aprender-ingles/og-image-en.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -141,60 +141,60 @@ button.play:hover{border-color:var(--acid)}
 <body>
 <header class="site">
   <div class="wrap">
-    <a class="brand" href="/aprender-ingles/en/">Learn English<span>.</span></a>
-    <p class="sub">Irregular verbs</p>
+    <a class="brand" href="/aprender-ingles/ro/">Învață engleză<span>.</span></a>
+    <p class="sub">Verbe neregulate</p>
   </div>
 </header>
 <main class="wrap">
-  <h1>Irregular verbs</h1>
-  <p class="intro">Practise with random questions: type the form you are asked for and check straight away whether it is right. The ones you miss will come up more often.</p>
+  <h1>Verbe neregulate</h1>
+  <p class="intro">Exersează cu întrebări aleatorii: scrie forma cerută și afli imediat dacă e corectă. Greșelile reapar mai des.</p>
   <p class="setbar" id="setbar"></p>
 
-  <div class="tabs" role="tablist" aria-label="Sections">
-    <button class="tab" id="tab-practice" role="tab" aria-selected="true" aria-controls="view-practice">Practice</button>
-    <button class="tab" id="tab-review" role="tab" aria-selected="false" aria-controls="view-review">Review the list</button>
-    <button class="tab" id="tab-create" role="tab" aria-selected="false" aria-controls="view-create">Create a list</button>
+  <div class="tabs" role="tablist" aria-label="Secțiuni">
+    <button class="tab" id="tab-practice" role="tab" aria-selected="true" aria-controls="view-practice">Exersează</button>
+    <button class="tab" id="tab-review" role="tab" aria-selected="false" aria-controls="view-review">Recapitulează lista</button>
+    <button class="tab" id="tab-create" role="tab" aria-selected="false" aria-controls="view-create">Creează o listă</button>
   </div>
 
   <details>
-    <summary>What the /.../ symbols mean (pronunciation)</summary>
+    <summary>Ce înseamnă simbolurile /.../ (pronunție)</summary>
     <div class="body">
-      <p>The symbols between slashes, like /ɡəʊ/, are the <b>phonetic transcription (IPA)</b>: they tell you how the word sounds in <b>British English</b>, sound by sound.</p>
+      <p>Simbolurile dintre bare oblice, precum /ɡəʊ/, sunt o <b>transcriere fonetică (IPA)</b>: arată cum sună cuvântul în <b>engleza britanică</b>, sunet cu sunet.</p>
       <ul>
-        <li>ˈ marks the stressed syllable: /bɪˈɡɪn/ is said be-GIN.</li>
-        <li>ː lengthens the vowel: /iː/ is a long "ee".</li>
-        <li>/ə/ is the most common relaxed vowel in English, like the a in "about".</li>
-        <li>If the symbols confuse you, no problem: tap the speaker 🔊 and listen to the word.</li>
+        <li>ˈ marchează silaba accentuată: /bɪˈɡɪn/ se pronunță be-GIN.</li>
+        <li>ː lungește vocala: /iː/ este un „i” lung.</li>
+        <li>/ə/ este cea mai frecventă vocală slabă din engleză, ca a din „about”.</li>
+        <li>Dacă simbolurile îți dau bătăi de cap, nicio problemă: apasă difuzorul 🔊 și ascultă cuvântul.</li>
       </ul>
     </div>
   </details>
 
   <section id="view-practice" role="tabpanel" aria-labelledby="tab-practice">
     <div class="stats">
-      <p>Questions: <b id="s-total">0</b> · Correct: <b id="s-ok" class="n-ok">0</b> · Wrong: <b id="s-bad" class="n-bad">0</b></p>
-      <button class="btn ghost" id="restart" type="button">Restart</button>
+      <p>Întrebări: <b id="s-total">0</b> · Corecte: <b id="s-ok" class="n-ok">0</b> · Greșite: <b id="s-bad" class="n-bad">0</b></p>
+      <button class="btn ghost" id="restart" type="button">Începe din nou</button>
     </div>
 
     <div class="card">
-      <p class="q-label" id="q-label">Infinitive of</p>
+      <p class="q-label" id="q-label">Infinitiv al verbului:</p>
       <p class="q-word" id="q-word">…</p>
       <p class="q-hint" id="q-hint"></p>
       <form id="answer-form" autocomplete="off">
         <div class="answer-row">
-          <label for="answer" class="sub" style="position:absolute;left:-9999px">Your answer in English</label>
-          <input id="answer" name="answer" type="text" inputmode="text" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="send" placeholder="Your answer in English"/>
-          <button class="btn" id="check" type="submit">Check</button>
+          <label for="answer" class="sub" style="position:absolute;left:-9999px">Răspunsul tău în engleză</label>
+          <input id="answer" name="answer" type="text" inputmode="text" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="send" placeholder="Răspunsul tău în engleză"/>
+          <button class="btn" id="check" type="submit">Verifică</button>
         </div>
       </form>
       <div class="feedback" id="feedback" aria-live="polite"></div>
       <div class="next-row" id="next-row">
-        <button class="btn" id="next" type="button">Next question</button>
+        <button class="btn" id="next" type="button">Întrebarea următoare</button>
       </div>
     </div>
-    <p class="note">Progress is kept for this session only: close or reload the page and it starts from zero.</p>
+    <p class="note">Progresul se numără doar în această sesiune: dacă închizi sau reîncarci pagina, totul se resetează.</p>
 
     <details id="correcciones-hoja" style="display:none">
-      <summary>Worksheet corrections</summary>
+      <summary>Corecturile exercițiului</summary>
       <div class="body">
         <ul>
           <li></li>
@@ -206,29 +206,29 @@ button.play:hover{border-color:var(--acid)}
 
   <section id="view-review" role="tabpanel" aria-labelledby="tab-review" hidden>
     <div class="search-row">
-      <label for="search" class="sub" style="position:absolute;left:-9999px">Search verb</label>
-      <input id="search" type="search" inputmode="search" placeholder="Search in English (e.g. make, go, went)"/>
+      <label for="search" class="sub" style="position:absolute;left:-9999px">Caută un verb</label>
+      <input id="search" type="search" inputmode="search" placeholder="Caută în engleză (de ex. make, go, went)"/>
     </div>
     <div class="table-scroll">
       <table>
         <thead>
-          <tr><th>Meaning</th><th>Infinitive</th><th>Past simple</th><th>Past participle</th></tr>
+          <tr><th>Sens</th><th>Infinitiv</th><th>Trecut</th><th>Participiu trecut</th></tr>
         </thead>
         <tbody id="verb-rows"></tbody>
       </table>
-      <p class="empty" id="empty">No verb matches your search.</p>
+      <p class="empty" id="empty">Niciun verb nu corespunde căutării.</p>
     </div>
   </section>
 
   <section id="view-create" role="tabpanel" aria-labelledby="tab-create" hidden>
     <div class="card">
-      <p>Tick the verbs you want from the full catalogue and copy the link: whoever opens it will practise only that selection, with its audio and phonetics.</p>
-      <p><input id="cl-filter" type="search" inputmode="search" placeholder="Filter verbs (e.g. eat, go, write)" style="width:100%;box-sizing:border-box;background:#0d0f12;border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:8px;font-size:15px"/></p>
+      <p>Alege verbele dorite și copiază linkul: cine îl deschide exersează doar alegerea ta, cu sunet și transcriere fonetică.</p>
+      <p><input id="cl-filter" type="search" inputmode="search" placeholder="Filtrează verbele (de ex. eat, go, write)" style="width:100%;box-sizing:border-box;background:#0d0f12;border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:8px;font-size:15px"/></p>
       <div id="cl-verbs" class="cl-grid"></div>
       <p class="cl-actions">
-        <button class="btn ghost" id="cl-all" type="button">Select all</button>
-        <button class="btn ghost" id="cl-none" type="button">Clear all</button>
-        <button class="btn" id="cl-copy" type="button">Copy the list link</button>
+        <button class="btn ghost" id="cl-all" type="button">Selectează tot</button>
+        <button class="btn ghost" id="cl-none" type="button">Deselectează tot</button>
+        <button class="btn" id="cl-copy" type="button">Copiază linkul listei</button>
       </p>
       <p id="cl-msg" class="cl-msg" aria-live="polite"></p>
     </div>
@@ -236,51 +236,51 @@ button.play:hover{border-color:var(--acid)}
 </main>
 <footer>
   <div class="wrap">
-    <p>Made by Raúl · <a href="https://raulbaeza15.github.io/">raulbaeza15.github.io</a></p>
-    <p class="langnav">Languages: <a href="/aprender-ingles/">Español</a> · <strong>English</strong> · <a href="/aprender-ingles/fr/">Français</a> · <a href="/aprender-ingles/de/">Deutsch</a> · <a href="/aprender-ingles/pt/">Português</a> · <a href="/aprender-ingles/it/">Italiano</a> · <a href="/aprender-ingles/tr/">Türkçe</a> · <a href="/aprender-ingles/nl/">Nederlands</a> · <a href="/aprender-ingles/pl/">Polski</a> · <a href="/aprender-ingles/sv/">Svenska</a> · <a href="/aprender-ingles/da/">Dansk</a> · <a href="/aprender-ingles/no/">Norsk</a> · <a href="/aprender-ingles/fi/">Suomi</a> · <a href="/aprender-ingles/ro/">Română</a></p>
+    <p>Creat de Raúl · <a href="https://raulbaeza15.github.io/">raulbaeza15.github.io</a></p>
+    <p class="langnav">Limbi: <a href="/aprender-ingles/">Español</a> · <a href="/aprender-ingles/en/">English</a> · <a href="/aprender-ingles/fr/">Français</a> · <a href="/aprender-ingles/de/">Deutsch</a> · <a href="/aprender-ingles/pt/">Português</a> · <a href="/aprender-ingles/it/">Italiano</a> · <a href="/aprender-ingles/tr/">Türkçe</a> · <a href="/aprender-ingles/nl/">Nederlands</a> · <a href="/aprender-ingles/pl/">Polski</a> · <a href="/aprender-ingles/sv/">Svenska</a> · <a href="/aprender-ingles/da/">Dansk</a> · <a href="/aprender-ingles/no/">Norsk</a> · <a href="/aprender-ingles/fi/">Suomi</a> · <strong>Română</strong></p>
   </div>
 </footer>
 <script src="catalog.js"></script>
 <script>
 /*LOGIC-START*/
 var VERBS_ALL=[
-{"es":"STUDY, GAIN SKILL","inf":"learn","past":"learnt / learned","pp":"learnt / learned","acc":{inf:["learn"],past:["learnt","learned","learnt/learned","learnt / learned"],pp:["learnt","learned","learnt/learned","learnt / learned"]}},
-{"es":"MAKE MUSIC WITH VOICE","inf":"sing","past":"sang","pp":"sung","acc":{inf:["sing"],past:["sang"],pp:["sung"]}},
-{"es":"CONSUME FOOD","inf":"eat","past":"ate","pp":"eaten","acc":{inf:["eat"],past:["ate"],pp:["eaten"]}},
-{"es":"CONSTRUCT","inf":"build","past":"built","pp":"built","acc":{inf:["build"],past:["built"],pp:["built"]}},
-{"es":"UTTER WORDS","inf":"say","past":"said","pp":"said","acc":{inf:["say"],past:["said"],pp:["said"]}},
-{"es":"START","inf":"begin","past":"began","pp":"begun","acc":{inf:["begin"],past:["began"],pp:["begun"]}},
-{"es":"PUT WORDS ON PAPER","inf":"write","past":"wrote","pp":"written","acc":{inf:["write"],past:["wrote"],pp:["written"]}},
-{"es":"USE MONEY OR TIME","inf":"spend","past":"spent","pp":"spent","acc":{inf:["spend"],past:["spent"],pp:["spent"]}},
-{"es":"TALK","inf":"speak","past":"spoke","pp":"spoken","acc":{inf:["speak"],past:["spoke"],pp:["spoken"]}},
-{"es":"CREATE, PRODUCE","inf":"make","past":"made","pp":"made","acc":{inf:["make"],past:["made"],pp:["made"]}},
-{"es":"INJURE, PAIN","inf":"hurt","past":"hurt","pp":"hurt","acc":{inf:["hurt"],past:["hurt"],pp:["hurt"]}},
-{"es":"MOVE, TRAVEL","inf":"go","past":"went","pp":"gone","acc":{inf:["go"],past:["went"],pp:["gone"]}},
-{"es":"OBTAIN, RECEIVE","inf":"get","past":"got","pp":"got","acc":{inf:["get"],past:["got"],pp:["got","gotten"]}},
-{"es":"FAIL TO REMEMBER","inf":"forget","past":"forgot","pp":"forgotten","acc":{inf:["forget"],past:["forgot"],pp:["forgotten"]}},
-{"es":"MISPLACE, FAIL TO WIN","inf":"lose","past":"lost","pp":"lost","acc":{inf:["lose"],past:["lost"],pp:["lost"]}},
-{"es":"TAKE WITHOUT PERMISSION","inf":"steal","past":"stole","pp":"stolen","acc":{inf:["steal"],past:["stole"],pp:["stolen"]}},
-{"es":"DEPART, GO AWAY","inf":"leave","past":"left","pp":"left","acc":{inf:["leave"],past:["left"],pp:["left"]}},
-{"es":"EXIST, OCCUR","inf":"be","past":"was / were","pp":"been","acc":{inf:["be"],past:["was","were","was/were","was / were"],pp:["been"]}},
-{"es":"MOVE HERE, ARRIVE","inf":"come","past":"came","pp":"come","acc":{inf:["come"],past:["came"],pp:["come"]}},
-{"es":"PERCEIVE WITH EYES","inf":"see","past":"saw","pp":"seen","acc":{inf:["see"],past:["saw"],pp:["seen"]}},
-{"es":"PLACE, POSITION","inf":"put","past":"put","pp":"put","acc":{inf:["put"],past:["put"],pp:["put"]}},
-{"es":"CALL BY PHONE, SOUND","inf":"ring","past":"rang","pp":"rung","acc":{inf:["ring"],past:["rang"],pp:["rung"]}},
-{"es":"MOVE FAST ON FOOT","inf":"run","past":"ran","pp":"run","acc":{inf:["run"],past:["ran"],pp:["run"]}},
-{"es":"SPLIT, SHATTER","inf":"break","past":"broke","pp":"broken","acc":{inf:["break"],past:["broke"],pp:["broken"]}},
-{"es":"EXCHANGE FOR MONEY","inf":"sell","past":"sold","pp":"sold","acc":{inf:["sell"],past:["sold"],pp:["sold"]}},
-{"es":"SWALLOW LIQUID","inf":"drink","past":"drank","pp":"drunk","acc":{inf:["drink"],past:["drank"],pp:["drunk"]}},
-{"es":"PURCHASE","inf":"buy","past":"bought","pp":"bought","acc":{inf:["buy"],past:["bought"],pp:["bought"]}},
-{"es":"SKETCH, PULL","inf":"draw","past":"drew","pp":"drawn","acc":{inf:["draw"],past:["drew"],pp:["drawn"]}},
-{"es":"PERCEIVE SOUND","inf":"hear","past":"heard","pp":"heard","acc":{inf:["hear"],past:["heard"],pp:["heard"]}},
-{"es":"GIVE FOOD TO","inf":"feed","past":"fed","pp":"fed","acc":{inf:["feed"],past:["fed"],pp:["fed"]}},
-{"es":"BE VICTORIOUS","inf":"win","past":"won","pp":"won","acc":{inf:["win"],past:["won"],pp:["won"]}},
-{"es":"PERFORM, CARRY OUT","inf":"do","past":"did","pp":"done","acc":{inf:["do"],past:["did"],pp:["done"]}},
-{"es":"SEE SOMEONE, ENCOUNTER","inf":"meet","past":"met","pp":"met","acc":{inf:["meet"],past:["met"],pp:["met"]}},
-{"es":"HAND OVER, DONATE","inf":"give","past":"gave","pp":"given","acc":{inf:["give"],past:["gave"],pp:["given"]}},
-{"es":"DROP DOWN","inf":"fall","past":"fell","pp":"fallen","acc":{inf:["fall"],past:["fell"],pp:["fallen"]}},
-{"es":"SLICE, TRIM","inf":"cut","past":"cut","pp":"cut","acc":{inf:["cut"],past:["cut"],pp:["cut"]}},
-{"es":"POSSESS, OWN","inf":"have","past":"had","pp":"had","acc":{inf:["have"],past:["had"],pp:["had"]}}
+{"es":"A ÎNVĂȚA","inf":"learn","past":"learnt / learned","pp":"learnt / learned","acc":{inf:["learn"],past:["learnt","learned","learnt/learned","learnt / learned"],pp:["learnt","learned","learnt/learned","learnt / learned"]}},
+{"es":"A CÂNTA","inf":"sing","past":"sang","pp":"sung","acc":{inf:["sing"],past:["sang"],pp:["sung"]}},
+{"es":"A MÂNCA","inf":"eat","past":"ate","pp":"eaten","acc":{inf:["eat"],past:["ate"],pp:["eaten"]}},
+{"es":"A CONSTRUI","inf":"build","past":"built","pp":"built","acc":{inf:["build"],past:["built"],pp:["built"]}},
+{"es":"A SPUNE, A ZICE","inf":"say","past":"said","pp":"said","acc":{inf:["say"],past:["said"],pp:["said"]}},
+{"es":"A ÎNCEPE","inf":"begin","past":"began","pp":"begun","acc":{inf:["begin"],past:["began"],pp:["begun"]}},
+{"es":"A SCRIE","inf":"write","past":"wrote","pp":"written","acc":{inf:["write"],past:["wrote"],pp:["written"]}},
+{"es":"A CHELTUI, A PETRECE","inf":"spend","past":"spent","pp":"spent","acc":{inf:["spend"],past:["spent"],pp:["spent"]}},
+{"es":"A VORBI","inf":"speak","past":"spoke","pp":"spoken","acc":{inf:["speak"],past:["spoke"],pp:["spoken"]}},
+{"es":"A FACE, A FABRICA","inf":"make","past":"made","pp":"made","acc":{inf:["make"],past:["made"],pp:["made"]}},
+{"es":"A RĂNI, A DUREA","inf":"hurt","past":"hurt","pp":"hurt","acc":{inf:["hurt"],past:["hurt"],pp:["hurt"]}},
+{"es":"A MERGE","inf":"go","past":"went","pp":"gone","acc":{inf:["go"],past:["went"],pp:["gone"]}},
+{"es":"A OBȚINE, A PRIMI","inf":"get","past":"got","pp":"got","acc":{inf:["get"],past:["got"],pp:["got","gotten"]}},
+{"es":"A UITA","inf":"forget","past":"forgot","pp":"forgotten","acc":{inf:["forget"],past:["forgot"],pp:["forgotten"]}},
+{"es":"A PIERDE","inf":"lose","past":"lost","pp":"lost","acc":{inf:["lose"],past:["lost"],pp:["lost"]}},
+{"es":"A FURA","inf":"steal","past":"stole","pp":"stolen","acc":{inf:["steal"],past:["stole"],pp:["stolen"]}},
+{"es":"A PLECA, A PĂRĂSI","inf":"leave","past":"left","pp":"left","acc":{inf:["leave"],past:["left"],pp:["left"]}},
+{"es":"A FI","inf":"be","past":"was / were","pp":"been","acc":{inf:["be"],past:["was","were","was/were","was / were"],pp:["been"]}},
+{"es":"A VENI","inf":"come","past":"came","pp":"come","acc":{inf:["come"],past:["came"],pp:["come"]}},
+{"es":"A VEDEA","inf":"see","past":"saw","pp":"seen","acc":{inf:["see"],past:["saw"],pp:["seen"]}},
+{"es":"A PUNE","inf":"put","past":"put","pp":"put","acc":{inf:["put"],past:["put"],pp:["put"]}},
+{"es":"A SUNA, A TELEFONA","inf":"ring","past":"rang","pp":"rung","acc":{inf:["ring"],past:["rang"],pp:["rung"]}},
+{"es":"A ALERGA","inf":"run","past":"ran","pp":"run","acc":{inf:["run"],past:["ran"],pp:["run"]}},
+{"es":"A SPARGE, A RUPE","inf":"break","past":"broke","pp":"broken","acc":{inf:["break"],past:["broke"],pp:["broken"]}},
+{"es":"A VINDE","inf":"sell","past":"sold","pp":"sold","acc":{inf:["sell"],past:["sold"],pp:["sold"]}},
+{"es":"A BEA","inf":"drink","past":"drank","pp":"drunk","acc":{inf:["drink"],past:["drank"],pp:["drunk"]}},
+{"es":"A CUMPĂRA","inf":"buy","past":"bought","pp":"bought","acc":{inf:["buy"],past:["bought"],pp:["bought"]}},
+{"es":"A DESENA","inf":"draw","past":"drew","pp":"drawn","acc":{inf:["draw"],past:["drew"],pp:["drawn"]}},
+{"es":"A AUZI","inf":"hear","past":"heard","pp":"heard","acc":{inf:["hear"],past:["heard"],pp:["heard"]}},
+{"es":"A HRĂNI","inf":"feed","past":"fed","pp":"fed","acc":{inf:["feed"],past:["fed"],pp:["fed"]}},
+{"es":"A CÂȘTIGA","inf":"win","past":"won","pp":"won","acc":{inf:["win"],past:["won"],pp:["won"]}},
+{"es":"A FACE","inf":"do","past":"did","pp":"done","acc":{inf:["do"],past:["did"],pp:["done"]}},
+{"es":"A SE ÎNTÂLNI, A CUNOAȘTE","inf":"meet","past":"met","pp":"met","acc":{inf:["meet"],past:["met"],pp:["met"]}},
+{"es":"A DA","inf":"give","past":"gave","pp":"given","acc":{inf:["give"],past:["gave"],pp:["given"]}},
+{"es":"A CĂDEA","inf":"fall","past":"fell","pp":"fallen","acc":{inf:["fall"],past:["fell"],pp:["fallen"]}},
+{"es":"A TĂIA","inf":"cut","past":"cut","pp":"cut","acc":{inf:["cut"],past:["cut"],pp:["cut"]}},
+{"es":"A AVEA","inf":"have","past":"had","pp":"had","acc":{inf:["have"],past:["had"],pp:["had"]}}
 ];
 var PRON_ALL=[{"inf":[["learn","/lɜːn/"]],"past":[["learnt","/lɜːnt/"],["learned","/lɜːnd/"]],"pp":[["learnt","/lɜːnt/"],["learned","/lɜːnd/"]]},{"inf":[["sing","/sɪŋ/"]],"past":[["sang","/sæŋ/"]],"pp":[["sung","/sʌŋ/"]]},{"inf":[["eat","/iːt/"]],"past":[["ate","/et/"]],"pp":[["eaten","/ˈiːtən/"]]},{"inf":[["build","/bɪld/"]],"past":[["built","/bɪlt/"]],"pp":[["built","/bɪlt/"]]},{"inf":[["say","/seɪ/"]],"past":[["said","/sed/"]],"pp":[["said","/sed/"]]},{"inf":[["begin","/bɪˈɡɪn/"]],"past":[["began","/bɪˈɡæn/"]],"pp":[["begun","/bɪˈɡʌn/"]]},{"inf":[["write","/raɪt/"]],"past":[["wrote","/rəʊt/"]],"pp":[["written","/ˈrɪtən/"]]},{"inf":[["spend","/spend/"]],"past":[["spent","/spent/"]],"pp":[["spent","/spent/"]]},{"inf":[["speak","/spiːk/"]],"past":[["spoke","/spəʊk/"]],"pp":[["spoken","/ˈspəʊkən/"]]},{"inf":[["make","/meɪk/"]],"past":[["made","/meɪd/"]],"pp":[["made","/meɪd/"]]},{"inf":[["hurt","/hɜːt/"]],"past":[["hurt","/hɜːt/"]],"pp":[["hurt","/hɜːt/"]]},{"inf":[["go","/ɡəʊ/"]],"past":[["went","/went/"]],"pp":[["gone","/ɡɒn/"]]},{"inf":[["get","/ɡet/"]],"past":[["got","/ɡɒt/"]],"pp":[["got","/ɡɒt/"]]},{"inf":[["forget","/fəˈɡet/"]],"past":[["forgot","/fəˈɡɒt/"]],"pp":[["forgotten","/fəˈɡɒtən/"]]},{"inf":[["lose","/luːz/"]],"past":[["lost","/lɒst/"]],"pp":[["lost","/lɒst/"]]},{"inf":[["steal","/stiːl/"]],"past":[["stole","/stəʊl/"]],"pp":[["stolen","/ˈstəʊlən/"]]},{"inf":[["leave","/liːv/"]],"past":[["left","/left/"]],"pp":[["left","/left/"]]},{"inf":[["be","/biː/"]],"past":[["was / were","/wɒz/ · /wɜː/","was-were"]],"pp":[["been","/biːn/"]]},{"inf":[["come","/kʌm/"]],"past":[["came","/keɪm/"]],"pp":[["come","/kʌm/"]]},{"inf":[["see","/siː/"]],"past":[["saw","/sɔː/"]],"pp":[["seen","/siːn/"]]},{"inf":[["put","/pʊt/"]],"past":[["put","/pʊt/"]],"pp":[["put","/pʊt/"]]},{"inf":[["ring","/rɪŋ/"]],"past":[["rang","/ræŋ/"]],"pp":[["rung","/rʌŋ/"]]},{"inf":[["run","/rʌn/"]],"past":[["ran","/ræn/"]],"pp":[["run","/rʌn/"]]},{"inf":[["break","/breɪk/"]],"past":[["broke","/brəʊk/"]],"pp":[["broken","/ˈbrəʊkən/"]]},{"inf":[["sell","/sel/"]],"past":[["sold","/səʊld/"]],"pp":[["sold","/səʊld/"]]},{"inf":[["drink","/drɪŋk/"]],"past":[["drank","/dræŋk/"]],"pp":[["drunk","/drʌŋk/"]]},{"inf":[["buy","/baɪ/"]],"past":[["bought","/bɔːt/"]],"pp":[["bought","/bɔːt/"]]},{"inf":[["draw","/drɔː/"]],"past":[["drew","/druː/"]],"pp":[["drawn","/drɔːn/"]]},{"inf":[["hear","/hɪə/"]],"past":[["heard","/hɜːd/"]],"pp":[["heard","/hɜːd/"]]},{"inf":[["feed","/fiːd/"]],"past":[["fed","/fed/"]],"pp":[["fed","/fed/"]]},{"inf":[["win","/wɪn/"]],"past":[["won","/wʌn/"]],"pp":[["won","/wʌn/"]]},{"inf":[["do","/duː/"]],"past":[["did","/dɪd/"]],"pp":[["done","/dʌn/"]]},{"inf":[["meet","/miːt/"]],"past":[["met","/met/"]],"pp":[["met","/met/"]]},{"inf":[["give","/ɡɪv/"]],"past":[["gave","/ɡeɪv/"]],"pp":[["given","/ˈɡɪvən/"]]},{"inf":[["fall","/fɔːl/"]],"past":[["fell","/fel/"]],"pp":[["fallen","/ˈfɔːlən/"]]},{"inf":[["cut","/kʌt/"]],"past":[["cut","/kʌt/"]],"pp":[["cut","/kʌt/"]]},{"inf":[["have","/hæv/"]],"past":[["had","/hæd/"]],"pp":[["had","/hæd/"]]}];
 var FORMS=["inf","past","pp"];
@@ -330,8 +330,8 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
 /*LOGIC-END*/
 
 (function(){
-  var FORM_LABELS={inf:"Infinitive",past:"Past simple",pp:"Past participle"};
-  function fbDetail(f,gloss,form){ return FORM_LABELS[f]+' of '+gloss+' is <b>'+form+'</b>'; }
+  var FORM_LABELS={inf:"Infinitiv",past:"Trecut",pp:"Participiu trecut"};
+  function fbDetail(f,gloss,form){ return FORM_LABELS[f]+' al verbului '+gloss+' este <b>'+form+'</b>'; }
   var weights={};
   var stats={total:0,ok:0,bad:0};
   var current=null;
@@ -358,10 +358,10 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     var v=VERBS[vi];
     current={key:key,verb:v,form:f,vi:vi};
     answered=false;
-    qLabel.textContent=FORM_LABELS[f]+" of";
+    qLabel.textContent=FORM_LABELS[f]+" al verbului:";
     qWord.textContent=v.es;
     if(f==="inf"){qHint.innerHTML=""}
-    else{qHint.innerHTML="Infinitive: <b>"+v.inf+"</b>"}
+    else{qHint.innerHTML="Infinitiv: <b>"+v.inf+"</b>"}
     input.value="";
     input.disabled=false;
     document.getElementById("check").disabled=false;
@@ -372,13 +372,13 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
   }
 
   function playBtn(w,label,fileKey){
-    return '<button type="button" class="play" data-src="/aprender-ingles/audio/'+(fileKey||w)+'.mp3" aria-label="Listen to '+label+'">🔊</button>';
+    return '<button type="button" class="play" data-src="/aprender-ingles/audio/'+(fileKey||w)+'.mp3" aria-label="Ascultă: '+label+'">🔊</button>';
   }
   function pronHtml(vi,forms){
     var p=PRON[vi];
     if(!p)return '';
     var out='';
-    var labels={inf:'Infinitive',past:'Past',pp:'Past participle'};
+    var labels={inf:'Infinitiv',past:'Trecut',pp:'Participiu trecut'};
     for(var i=0;i<forms.length;i++){
       var f=forms[i];
       var vars=(p[f]||[]);
@@ -407,11 +407,11 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     var correctForm=v[f];
     if(ok){
       feedback.className="feedback show ok";
-      feedback.innerHTML='<p class="f-title">Correct.</p><p class="f-detail">'+fbDetail(f,v.es,correctForm)+'.</p>'+trioHtml(v,current.vi);
+      feedback.innerHTML='<p class="f-title">Corect.</p><p class="f-detail">'+fbDetail(f,v.es,correctForm)+'.</p>'+trioHtml(v,current.vi);
     }else{
       feedback.className="feedback show bad";
-      var detail=input.value.trim()?('You wrote "'+input.value.trim()+'". '):'';
-      feedback.innerHTML='<p class="f-title">Not quite.</p><p class="f-detail">'+detail+fbDetail(f,v.es,correctForm)+'. This one will come up again.</p>'+trioHtml(v,current.vi);
+      var detail=input.value.trim()?('Ai scris „'+input.value.trim()+'”. '):'';
+      feedback.innerHTML='<p class="f-title">Nu chiar.</p><p class="f-detail">'+detail+fbDetail(f,v.es,correctForm)+'. Va reveni.</p>'+trioHtml(v,current.vi);
     }
     input.disabled=true;
     document.getElementById("check").disabled=true;
@@ -453,7 +453,7 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     var p=PRON[vi];
     function cell(form,plain){
       if(!p||!(p[form]||[]).length)return '<td class="en">'+plain+'</td>';
-      var labels={inf:'Infinitive',past:'Past simple',pp:'Past participle'};
+      var labels={inf:'Infinitiv',past:'Trecut',pp:'Participiu trecut'};
       var bits='';
       (p[form]||[]).forEach(function(pr){
         bits+='<span class="pv">'+playBtn(pr[0],labels[form]+': '+pr[0],pr[2])+'<span class="pc"><span>'+pr[0]+'</span><span class="ipa">'+pr[1]+'</span></span></span>';
@@ -489,11 +489,11 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
   if(MODE!=="class"){var ch=document.getElementById("correcciones-hoja");if(ch)ch.style.display="none"}
   var setbar=document.getElementById("setbar");
   if(MODE==="custom"){setbar.classList.add("custom");
-    setbar.innerHTML='Custom list · '+VERBS.length+(VERBS.length===1?' verb':' verbs')+' · <a href="/aprender-ingles/en/">Back to the class list</a>';
+    setbar.innerHTML='Lista proprie · '+VERBS.length+' verbe · <a href="/aprender-ingles/ro/">Înapoi la lista clasei</a>';
   }else if(MODE==="catalog"){setbar.classList.add("custom");
-    setbar.innerHTML='Full catalogue · '+VERBS.length+' verbs · <a href="/aprender-ingles/en/">Back to the class list</a>';
+    setbar.innerHTML='Tot catalogul · '+VERBS.length+' verbe · <a href="/aprender-ingles/ro/">Înapoi la lista clasei</a>';
   }else{
-    setbar.innerHTML='Class list · '+VERBS.length+' verbs'+(CAT_OK?' · <a href="#l=todos">Go to the full catalogue ('+VERBS_CATALOG.length+')</a>':'');
+    setbar.innerHTML='Lista clasei · '+VERBS.length+' verbe'+(CAT_OK?' · <a href="#l=todos">La tot catalogul ('+VERBS_CATALOG.length+')</a>':'');
   }
 
   var clGrid=document.getElementById("cl-verbs");
@@ -521,9 +521,9 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
   document.getElementById("cl-none").addEventListener("click",function(){clBoxes.forEach(function(c){c.checked=false})});
   document.getElementById("cl-copy").addEventListener("click",function(){
     var sel=clBoxes.filter(function(c){return c.checked}).map(function(c){return c.value});
-    if(!sel.length){clMsg.textContent="Tick at least one verb.";return}
+    if(!sel.length){clMsg.textContent="Selectează cel puțin un verb.";return}
     var url=location.origin+location.pathname+"#l="+sel.join("-");
-    function done(){clMsg.textContent="Link copied: "+sel.length+(sel.length===1?" verb.":" verbs.")}
+    function done(){clMsg.textContent="Link copiat: "+sel.length+" verbe."}
     function fallback(){
       var ta=document.createElement("textarea");
       ta.value=url;document.body.appendChild(ta);ta.select();

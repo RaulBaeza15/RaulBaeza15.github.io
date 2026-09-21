@@ -410,7 +410,7 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     }else{
       feedback.className="feedback show bad";
       var detail=input.value.trim()?('You wrote "'+input.value.trim()+'". '):'';
-      feedback.innerHTML='<p class="f-title">Not quite.</p><p class="f-detail">'+detail+FORM_LABELS[f]+' de '+v.es+' es <b>'+correctForm+'</b> This one will come up again.</p>'+trioHtml(v,current.vi);
+      feedback.innerHTML='<p class="f-title">Not quite.</p><p class="f-detail">'+detail+FORM_LABELS[f]+' of '+v.es+' is <b>'+correctForm+'</b> This one will come up again.</p>'+trioHtml(v,current.vi);
     }
     input.disabled=true;
     document.getElementById("check").disabled=true;

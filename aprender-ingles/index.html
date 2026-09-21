@@ -100,6 +100,15 @@ footer a:hover{color:var(--acid)}
 .ipa{color:var(--muted);font-size:12.5px;font-family:Manrope,Arial,sans-serif;white-space:nowrap}
 button.play{display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:36px;width:36px;height:36px;background:transparent;border:1px solid var(--line);color:var(--acid);font-size:14px;cursor:pointer;padding:0;border-radius:6px;line-height:1;flex:none}
 button.play:hover{border-color:var(--acid)}
+.setbar{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 0}
+.setbar a{color:var(--acid);text-decoration:none;border-bottom:1px solid var(--acid)}
+.cl-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;margin:10px 0;max-height:260px;overflow:auto}
+.cl-grid label{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;padding:4px 2px}
+.cl-grid input{width:16px;height:16px;accent-color:var(--acid)}
+.cl-grid .cl-es{color:var(--muted);font-size:12px}
+.cl-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.cl-msg{font-size:13px;color:var(--acid);min-height:18px;margin:6px 0 0}
+@media (max-width:560px){.cl-grid{grid-template-columns:1fr}}
 .pron-list{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
 .pron-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
 .pron-line .fl{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:92px}
@@ -134,6 +143,7 @@ button.play:hover{border-color:var(--acid)}
 <main class="wrap">
   <h1>Verbos irregulares</h1>
   <p class="intro">Practica con preguntas al azar: escribe la forma que te piden y comprueba al momento si está bien. Las que falles volverán a salir más a menudo.</p>
+  <p class="setbar" id="setbar"></p>
 
   <div class="tabs" role="tablist" aria-label="Secciones">
     <button class="tab" id="tab-practice" role="tab" aria-selected="true" aria-controls="view-practice">Practicar</button>
@@ -150,6 +160,20 @@ button.play:hover{border-color:var(--acid)}
         <li>/ə/ es la «e» relajada más común del inglés, como la e final de «gente».</li>
         <li>Si los símbolos te lian, no pasa nada: pulsa el altavoz 🔊 y escucha la palabra.</li>
       </ul>
+    </div>
+  </details>
+
+  <details id="crear-lista">
+    <summary>Crear una lista para tus alumnos</summary>
+    <div class="body">
+      <p>Marca los verbos que quieras y copia el enlace: quien lo abra practicará solo esa selección, con sus audios y su fonética.</p>
+      <div id="cl-verbs" class="cl-grid"></div>
+      <p class="cl-actions">
+        <button class="btn ghost" id="cl-all" type="button">Marcar todos</button>
+        <button class="btn ghost" id="cl-none" type="button">Quitar todos</button>
+        <button class="btn" id="cl-copy" type="button">Copiar enlace de la lista</button>
+      </p>
+      <p id="cl-msg" class="cl-msg" aria-live="polite"></p>
     </div>
   </details>
 
@@ -211,7 +235,7 @@ button.play:hover{border-color:var(--acid)}
 </footer>
 <script>
 /*LOGIC-START*/
-var VERBS=[
+var VERBS_ALL=[
 {es:"APRENDER",inf:"learn",past:"learnt / learned",pp:"learnt / learned",acc:{inf:["learn"],past:["learnt","learned","learnt/learned","learnt / learned"],pp:["learnt","learned","learnt/learned","learnt / learned"]}},
 {es:"CANTAR",inf:"sing",past:"sang",pp:"sung",acc:{inf:["sing"],past:["sang"],pp:["sung"]}},
 {es:"COMER",inf:"eat",past:"ate",pp:"eaten",acc:{inf:["eat"],past:["ate"],pp:["eaten"]}},
@@ -250,8 +274,28 @@ var VERBS=[
 {es:"CORTAR",inf:"cut",past:"cut",pp:"cut",acc:{inf:["cut"],past:["cut"],pp:["cut"]}},
 {es:"TENER",inf:"have",past:"had",pp:"had",acc:{inf:["have"],past:["had"],pp:["had"]}}
 ];
-var PRON=[{"inf":[["learn","/lɜːn/"]],"past":[["learnt","/lɜːnt/"],["learned","/lɜːnd/"]],"pp":[["learnt","/lɜːnt/"],["learned","/lɜːnd/"]]},{"inf":[["sing","/sɪŋ/"]],"past":[["sang","/sæŋ/"]],"pp":[["sung","/sʌŋ/"]]},{"inf":[["eat","/iːt/"]],"past":[["ate","/et/"]],"pp":[["eaten","/ˈiːtən/"]]},{"inf":[["build","/bɪld/"]],"past":[["built","/bɪlt/"]],"pp":[["built","/bɪlt/"]]},{"inf":[["say","/seɪ/"]],"past":[["said","/sed/"]],"pp":[["said","/sed/"]]},{"inf":[["begin","/bɪˈɡɪn/"]],"past":[["began","/bɪˈɡæn/"]],"pp":[["begun","/bɪˈɡʌn/"]]},{"inf":[["write","/raɪt/"]],"past":[["wrote","/rəʊt/"]],"pp":[["written","/ˈrɪtən/"]]},{"inf":[["spend","/spend/"]],"past":[["spent","/spent/"]],"pp":[["spent","/spent/"]]},{"inf":[["speak","/spiːk/"]],"past":[["spoke","/spəʊk/"]],"pp":[["spoken","/ˈspəʊkən/"]]},{"inf":[["make","/meɪk/"]],"past":[["made","/meɪd/"]],"pp":[["made","/meɪd/"]]},{"inf":[["hurt","/hɜːt/"]],"past":[["hurt","/hɜːt/"]],"pp":[["hurt","/hɜːt/"]]},{"inf":[["go","/ɡəʊ/"]],"past":[["went","/went/"]],"pp":[["gone","/ɡɒn/"]]},{"inf":[["get","/ɡet/"]],"past":[["got","/ɡɒt/"]],"pp":[["got","/ɡɒt/"]]},{"inf":[["forget","/fəˈɡet/"]],"past":[["forgot","/fəˈɡɒt/"]],"pp":[["forgotten","/fəˈɡɒtən/"]]},{"inf":[["lose","/luːz/"]],"past":[["lost","/lɒst/"]],"pp":[["lost","/lɒst/"]]},{"inf":[["steal","/stiːl/"]],"past":[["stole","/stəʊl/"]],"pp":[["stolen","/ˈstəʊlən/"]]},{"inf":[["leave","/liːv/"]],"past":[["left","/left/"]],"pp":[["left","/left/"]]},{"inf":[["be","/biː/"]],"past":[["was / were","/wɒz/ · /wɜː/","was-were"]],"pp":[["been","/biːn/"]]},{"inf":[["come","/kʌm/"]],"past":[["came","/keɪm/"]],"pp":[["come","/kʌm/"]]},{"inf":[["see","/siː/"]],"past":[["saw","/sɔː/"]],"pp":[["seen","/siːn/"]]},{"inf":[["put","/pʊt/"]],"past":[["put","/pʊt/"]],"pp":[["put","/pʊt/"]]},{"inf":[["ring","/rɪŋ/"]],"past":[["rang","/ræŋ/"]],"pp":[["rung","/rʌŋ/"]]},{"inf":[["run","/rʌn/"]],"past":[["ran","/ræn/"]],"pp":[["run","/rʌn/"]]},{"inf":[["break","/breɪk/"]],"past":[["broke","/brəʊk/"]],"pp":[["broken","/ˈbrəʊkən/"]]},{"inf":[["sell","/sel/"]],"past":[["sold","/səʊld/"]],"pp":[["sold","/səʊld/"]]},{"inf":[["drink","/drɪŋk/"]],"past":[["drank","/dræŋk/"]],"pp":[["drunk","/drʌŋk/"]]},{"inf":[["buy","/baɪ/"]],"past":[["bought","/bɔːt/"]],"pp":[["bought","/bɔːt/"]]},{"inf":[["draw","/drɔː/"]],"past":[["drew","/druː/"]],"pp":[["drawn","/drɔːn/"]]},{"inf":[["hear","/hɪə/"]],"past":[["heard","/hɜːd/"]],"pp":[["heard","/hɜːd/"]]},{"inf":[["feed","/fiːd/"]],"past":[["fed","/fed/"]],"pp":[["fed","/fed/"]]},{"inf":[["win","/wɪn/"]],"past":[["won","/wʌn/"]],"pp":[["won","/wʌn/"]]},{"inf":[["do","/duː/"]],"past":[["did","/dɪd/"]],"pp":[["done","/dʌn/"]]},{"inf":[["meet","/miːt/"]],"past":[["met","/met/"]],"pp":[["met","/met/"]]},{"inf":[["give","/ɡɪv/"]],"past":[["gave","/ɡeɪv/"]],"pp":[["given","/ˈɡɪvən/"]]},{"inf":[["fall","/fɔːl/"]],"past":[["fell","/fel/"]],"pp":[["fallen","/ˈfɔːlən/"]]},{"inf":[["cut","/kʌt/"]],"past":[["cut","/kʌt/"]],"pp":[["cut","/kʌt/"]]},{"inf":[["have","/hæv/"]],"past":[["had","/hæd/"]],"pp":[["had","/hæd/"]]}];
+var PRON_ALL=[{"inf":[["learn","/lɜːn/"]],"past":[["learnt","/lɜːnt/"],["learned","/lɜːnd/"]],"pp":[["learnt","/lɜːnt/"],["learned","/lɜːnd/"]]},{"inf":[["sing","/sɪŋ/"]],"past":[["sang","/sæŋ/"]],"pp":[["sung","/sʌŋ/"]]},{"inf":[["eat","/iːt/"]],"past":[["ate","/et/"]],"pp":[["eaten","/ˈiːtən/"]]},{"inf":[["build","/bɪld/"]],"past":[["built","/bɪlt/"]],"pp":[["built","/bɪlt/"]]},{"inf":[["say","/seɪ/"]],"past":[["said","/sed/"]],"pp":[["said","/sed/"]]},{"inf":[["begin","/bɪˈɡɪn/"]],"past":[["began","/bɪˈɡæn/"]],"pp":[["begun","/bɪˈɡʌn/"]]},{"inf":[["write","/raɪt/"]],"past":[["wrote","/rəʊt/"]],"pp":[["written","/ˈrɪtən/"]]},{"inf":[["spend","/spend/"]],"past":[["spent","/spent/"]],"pp":[["spent","/spent/"]]},{"inf":[["speak","/spiːk/"]],"past":[["spoke","/spəʊk/"]],"pp":[["spoken","/ˈspəʊkən/"]]},{"inf":[["make","/meɪk/"]],"past":[["made","/meɪd/"]],"pp":[["made","/meɪd/"]]},{"inf":[["hurt","/hɜːt/"]],"past":[["hurt","/hɜːt/"]],"pp":[["hurt","/hɜːt/"]]},{"inf":[["go","/ɡəʊ/"]],"past":[["went","/went/"]],"pp":[["gone","/ɡɒn/"]]},{"inf":[["get","/ɡet/"]],"past":[["got","/ɡɒt/"]],"pp":[["got","/ɡɒt/"]]},{"inf":[["forget","/fəˈɡet/"]],"past":[["forgot","/fəˈɡɒt/"]],"pp":[["forgotten","/fəˈɡɒtən/"]]},{"inf":[["lose","/luːz/"]],"past":[["lost","/lɒst/"]],"pp":[["lost","/lɒst/"]]},{"inf":[["steal","/stiːl/"]],"past":[["stole","/stəʊl/"]],"pp":[["stolen","/ˈstəʊlən/"]]},{"inf":[["leave","/liːv/"]],"past":[["left","/left/"]],"pp":[["left","/left/"]]},{"inf":[["be","/biː/"]],"past":[["was / were","/wɒz/ · /wɜː/","was-were"]],"pp":[["been","/biːn/"]]},{"inf":[["come","/kʌm/"]],"past":[["came","/keɪm/"]],"pp":[["come","/kʌm/"]]},{"inf":[["see","/siː/"]],"past":[["saw","/sɔː/"]],"pp":[["seen","/siːn/"]]},{"inf":[["put","/pʊt/"]],"past":[["put","/pʊt/"]],"pp":[["put","/pʊt/"]]},{"inf":[["ring","/rɪŋ/"]],"past":[["rang","/ræŋ/"]],"pp":[["rung","/rʌŋ/"]]},{"inf":[["run","/rʌn/"]],"past":[["ran","/ræn/"]],"pp":[["run","/rʌn/"]]},{"inf":[["break","/breɪk/"]],"past":[["broke","/brəʊk/"]],"pp":[["broken","/ˈbrəʊkən/"]]},{"inf":[["sell","/sel/"]],"past":[["sold","/səʊld/"]],"pp":[["sold","/səʊld/"]]},{"inf":[["drink","/drɪŋk/"]],"past":[["drank","/dræŋk/"]],"pp":[["drunk","/drʌŋk/"]]},{"inf":[["buy","/baɪ/"]],"past":[["bought","/bɔːt/"]],"pp":[["bought","/bɔːt/"]]},{"inf":[["draw","/drɔː/"]],"past":[["drew","/druː/"]],"pp":[["drawn","/drɔːn/"]]},{"inf":[["hear","/hɪə/"]],"past":[["heard","/hɜːd/"]],"pp":[["heard","/hɜːd/"]]},{"inf":[["feed","/fiːd/"]],"past":[["fed","/fed/"]],"pp":[["fed","/fed/"]]},{"inf":[["win","/wɪn/"]],"past":[["won","/wʌn/"]],"pp":[["won","/wʌn/"]]},{"inf":[["do","/duː/"]],"past":[["did","/dɪd/"]],"pp":[["done","/dʌn/"]]},{"inf":[["meet","/miːt/"]],"past":[["met","/met/"]],"pp":[["met","/met/"]]},{"inf":[["give","/ɡɪv/"]],"past":[["gave","/ɡeɪv/"]],"pp":[["given","/ˈɡɪvən/"]]},{"inf":[["fall","/fɔːl/"]],"past":[["fell","/fel/"]],"pp":[["fallen","/ˈfɔːlən/"]]},{"inf":[["cut","/kʌt/"]],"past":[["cut","/kʌt/"]],"pp":[["cut","/kʌt/"]]},{"inf":[["have","/hæv/"]],"past":[["had","/hæd/"]],"pp":[["had","/hæd/"]]}];
 var FORMS=["inf","past","pp"];
+function parseSetParam(){
+  try{
+    var h=location.hash||"";
+    var m=h.match(/^#l=([a-z-]*)$/i);
+    if(!m||!m[1])return null;
+    var codes=m[1].split("-");
+    var idx=[];
+    for(var k=0;k<codes.length;k++){
+      for(var i=0;i<VERBS_ALL.length;i++){
+        if(VERBS_ALL[i].inf===codes[k] && idx.indexOf(i)===-1){idx.push(i);break}
+      }
+    }
+    return idx.length?idx:null;
+  }catch(e){return null}
+}
+var SET_IDX=parseSetParam();
+var CUSTOM=!!SET_IDX;
+if(!SET_IDX){SET_IDX=[];for(var j=0;j<VERBS_ALL.length;j++)SET_IDX.push(j)}
+var VERBS=SET_IDX.map(function(i){return VERBS_ALL[i]});
+var PRON=SET_IDX.map(function(i){return PRON_ALL[i]});
 function norm(s){return String(s==null?"":s).toLowerCase().trim().replace(/\s+/g," ")}
 function isCorrect(answer,accepted){var n=norm(answer);if(!n)return false;for(var i=0;i<accepted.length;i++){if(norm(accepted[i])===n)return true}return false}
 function allKeys(){var ks=[];for(var i=0;i<VERBS.length;i++){for(var j=0;j<FORMS.length;j++){ks.push(i+"-"+FORMS[j])}}return ks}
@@ -419,6 +463,43 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
     if(player){player.pause()}
     player=new Audio(b.getAttribute("data-src"));
     player.play();
+  });
+
+  /* conjuntos: barra de estado y creador de listas */
+  var setbar=document.getElementById("setbar");
+  if(CUSTOM){
+    setbar.innerHTML='Lista personalizada · '+VERBS.length+(VERBS.length===1?' verbo':' verbos')+' · <a href="/aprender-ingles/">Volver a la lista de clase</a>';
+  }else{
+    setbar.textContent='Lista de clase · '+VERBS.length+' verbos';
+  }
+
+  var clGrid=document.getElementById("cl-verbs");
+  var clMsg=document.getElementById("cl-msg");
+  var clBoxes=[];
+  VERBS_ALL.forEach(function(v,vi){
+    var lab=document.createElement("label");
+    var cb=document.createElement("input");
+    cb.type="checkbox";cb.value=v.inf;cb.checked=true;
+    var sp=document.createElement("span");
+    sp.innerHTML=v.inf+' <span class="cl-es">'+v.es.toLowerCase()+'</span>';
+    lab.appendChild(cb);lab.appendChild(sp);
+    clGrid.appendChild(lab);
+    clBoxes.push(cb);
+  });
+  document.getElementById("cl-all").addEventListener("click",function(){clBoxes.forEach(function(c){c.checked=true})});
+  document.getElementById("cl-none").addEventListener("click",function(){clBoxes.forEach(function(c){c.checked=false})});
+  document.getElementById("cl-copy").addEventListener("click",function(){
+    var sel=clBoxes.filter(function(c){return c.checked}).map(function(c){return c.value});
+    if(!sel.length){clMsg.textContent="Marca al menos un verbo.";return}
+    var url=location.origin+location.pathname+"#l="+sel.join("-");
+    function done(){clMsg.textContent="Enlace copiado: "+sel.length+(sel.length===1?" verbo.":" verbos.")}
+    function fallback(){
+      var ta=document.createElement("textarea");
+      ta.value=url;document.body.appendChild(ta);ta.select();
+      try{document.execCommand("copy");done()}catch(e){clMsg.textContent=url}
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done,fallback)}else{fallback()}
   });
 
   newQuestion();

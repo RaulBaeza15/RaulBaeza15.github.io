@@ -100,8 +100,9 @@ footer a:hover{color:var(--acid)}
 .ipa{color:var(--muted);font-size:12.5px;font-family:Manrope,Arial,sans-serif;white-space:nowrap}
 button.play{display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:36px;width:36px;height:36px;background:transparent;border:1px solid var(--line);color:var(--acid);font-size:14px;cursor:pointer;padding:0;border-radius:6px;line-height:1;flex:none}
 button.play:hover{border-color:var(--acid)}
-.setbar{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 0}
-.setbar a{color:var(--acid);text-decoration:none;border-bottom:1px solid var(--acid)}
+.setbar{display:inline-block;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text);margin:10px 0 14px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
+.setbar.custom{border-color:var(--acid);color:var(--acid)}
+.setbar a{color:var(--acid);text-decoration:none;border-bottom:1px solid var(--acid);margin-left:8px}
 .cl-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;margin:10px 0;max-height:260px;overflow:auto}
 .cl-grid label{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;padding:4px 2px}
 .cl-grid input{width:16px;height:16px;accent-color:var(--acid)}
@@ -148,6 +149,7 @@ button.play:hover{border-color:var(--acid)}
   <div class="tabs" role="tablist" aria-label="Secciones">
     <button class="tab" id="tab-practice" role="tab" aria-selected="true" aria-controls="view-practice">Practicar</button>
     <button class="tab" id="tab-review" role="tab" aria-selected="false" aria-controls="view-review">Repasar la lista</button>
+    <button class="tab" id="tab-create" role="tab" aria-selected="false" aria-controls="view-create">Crear lista</button>
   </div>
 
   <details>
@@ -160,20 +162,6 @@ button.play:hover{border-color:var(--acid)}
         <li>/ə/ es la «e» relajada más común del inglés, como la e final de «gente».</li>
         <li>Si los símbolos te lian, no pasa nada: pulsa el altavoz 🔊 y escucha la palabra.</li>
       </ul>
-    </div>
-  </details>
-
-  <details id="crear-lista">
-    <summary>Crear una lista para tus alumnos</summary>
-    <div class="body">
-      <p>Marca los verbos que quieras y copia el enlace: quien lo abra practicará solo esa selección, con sus audios y su fonética.</p>
-      <div id="cl-verbs" class="cl-grid"></div>
-      <p class="cl-actions">
-        <button class="btn ghost" id="cl-all" type="button">Marcar todos</button>
-        <button class="btn ghost" id="cl-none" type="button">Quitar todos</button>
-        <button class="btn" id="cl-copy" type="button">Copiar enlace de la lista</button>
-      </p>
-      <p id="cl-msg" class="cl-msg" aria-live="polite"></p>
     </div>
   </details>
 
@@ -225,6 +213,19 @@ button.play:hover{border-color:var(--acid)}
         <tbody id="verb-rows"></tbody>
       </table>
       <p class="empty" id="empty">Ningún verbo coincide con la búsqueda.</p>
+    </div>
+  </section>
+
+  <section id="view-create" role="tabpanel" aria-labelledby="tab-create" hidden>
+    <div class="card">
+      <p>Marca los verbos que quieras y copia el enlace: quien lo abra practicará solo esa selección, con sus audios y su fonética.</p>
+      <div id="cl-verbs" class="cl-grid"></div>
+      <p class="cl-actions">
+        <button class="btn ghost" id="cl-all" type="button">Marcar todos</button>
+        <button class="btn ghost" id="cl-none" type="button">Quitar todos</button>
+        <button class="btn" id="cl-copy" type="button">Copiar enlace de la lista</button>
+      </p>
+      <p id="cl-msg" class="cl-msg" aria-live="polite"></p>
     </div>
   </section>
 </main>
@@ -411,18 +412,22 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
   /* pestañas */
   var tabP=document.getElementById("tab-practice");
   var tabR=document.getElementById("tab-review");
+  var tabC=document.getElementById("tab-create");
   var viewP=document.getElementById("view-practice");
   var viewR=document.getElementById("view-review");
+  var viewC=document.getElementById("view-create");
   function select(which){
-    var practice=which==="practice";
-    tabP.setAttribute("aria-selected",practice?"true":"false");
-    tabR.setAttribute("aria-selected",practice?"false":"true");
-    viewP.hidden=!practice;
-    viewR.hidden=practice;
-    if(!practice){document.getElementById("search").focus()}
+    tabP.setAttribute("aria-selected",which==="practice"?"true":"false");
+    tabR.setAttribute("aria-selected",which==="review"?"true":"false");
+    tabC.setAttribute("aria-selected",which==="create"?"true":"false");
+    viewP.hidden=which!=="practice";
+    viewR.hidden=which!=="review";
+    viewC.hidden=which!=="create";
+    if(which==="review"){document.getElementById("search").focus()}
   }
   tabP.addEventListener("click",function(){select("practice")});
   tabR.addEventListener("click",function(){select("review")});
+  tabC.addEventListener("click",function(){select("create")});
 
   /* tabla de repaso */
   var tbody=document.getElementById("verb-rows");
@@ -467,7 +472,7 @@ function bumpWeight(weights,key){weights[key]=(weights[key]||1)+2;return weights
 
   /* conjuntos: barra de estado y creador de listas */
   var setbar=document.getElementById("setbar");
-  if(CUSTOM){
+  if(CUSTOM){setbar.classList.add("custom");
     setbar.innerHTML='Lista personalizada · '+VERBS.length+(VERBS.length===1?' verbo':' verbos')+' · <a href="/aprender-ingles/">Volver a la lista de clase</a>';
   }else{
     setbar.textContent='Lista de clase · '+VERBS.length+' verbos';

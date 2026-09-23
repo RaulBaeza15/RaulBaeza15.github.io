@@ -1,0 +1,66 @@
+name: SEO pass
+on:
+  push:
+    paths: ['.github/workflows/seo-pass.yml']
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply SEO changes
+        shell: python
+        run: |
+          import re, json, datetime
+          from pathlib import Path
+          B='https://raulbaeza15.github.io'
+          today=datetime.date.today().isoformat()
+          SG='https://scalego.github.io/ingles/verbos-irregulares/'
+          LANGS=['','es','pt','de','fr','nl']
+          PROJ=['dnd-rag','nexus-360','brain-tumor-detection','nostalgia']
+          Path('favicon.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#0a0b0d"/><text x="9" y="44" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700" letter-spacing="-2" fill="#f3f0e9">RB</text><circle cx="52" cy="41" r="4" fill="#c7ff3d"/></svg>\n')
+          FAV='<link href="/favicon.svg" rel="icon" type="image/svg+xml"/>'
+          def ld(o): return '<script type="application/ld+json">'+json.dumps(o,ensure_ascii=False,separators=(',',':'))+'</script>'
+          PERSON={"@type":"Person","@id":B+"/#raul","name":"Raúl Baeza Osuna","alternateName":"Raúl Baeza","url":B+"/","jobTitle":"Software Engineer",
+           "sameAs":["https://github.com/RaulBaeza15","https://www.linkedin.com/in/ra%C3%BAl-baeza-osuna-a9236b188/"],
+           "knowsAbout":["Software engineering","Applied AI","Retrieval-augmented generation","Machine learning"]}
+          def attr(s,name):
+              m=re.search(r'<meta content="([^"]*)" name="%s"/?>'%name,s) or re.search(r'<meta name="%s" content="([^"]*)"/?>'%name,s)
+              return m.group(1) if m else ''
+          def title(s): return re.search(r'<title>([^<]*)</title>',s).group(1)
+          def repoint(s):
+              return s.replace('href="/aprender-ingles/"','href="%s"'%SG)
+          for lg in LANGS:
+              pre=(lg+'/') if lg else ''
+              p=Path(pre+'index.html'); s=p.read_text(); url=B+'/'+pre
+              assert 'ld+json' not in s
+              g={"@context":"https://schema.org","@graph":[{"@type":"ProfilePage","url":url,"name":title(s).replace('&amp;','&'),"inLanguage":lg or 'en',"mainEntity":{"@id":B+"/#raul"}},PERSON]}
+              s=s.replace('</head>',FAV+ld(g)+'</head>',1); s=repoint(s); p.write_text(s)
+              for pr in PROJ:
+                  p=Path(pre+pr+'/index.html'); s=p.read_text(); u=B+'/'+pre+pr+'/'
+                  t=title(s).replace(' — Raúl Baeza','')
+                  g={"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","name":t,"url":u,"inLanguage":lg or 'en',"description":attr(s,'description'),"author":{"@id":B+"/#raul"}},
+                    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Raúl Baeza","item":B+'/'+pre},{"@type":"ListItem","position":2,"name":t,"item":u}]},
+                    {"@type":"Person","@id":B+"/#raul","name":"Raúl Baeza Osuna","url":B+"/"}]}
+                  s=s.replace('</head>',FAV+ld(g)+'</head>',1); s=repoint(s); p.write_text(s)
+          # old verbs copy -> canonical to Scale Go (same tool, now lives there)
+          ai=Path('aprender-ingles')
+          for p in [ai/'index.html']+sorted(ai.glob('*/index.html')):
+              s=p.read_text(); lc='' if p.parent==ai else p.parent.name
+              new=SG+(lc+'/' if lc else '')
+              s,k=re.subn(r'<link rel="canonical" href="[^"]*"/>','<link rel="canonical" href="%s"/>'%new,s,count=1); assert k==1,p
+              s=re.sub(r'<meta property="og:url" content="[^"]*"/>','<meta property="og:url" content="%s"/>'%new,s,count=1)
+              p.write_text(s)
+          urls=[B+'/'+((lg+'/') if lg else '')+x for lg in LANGS for x in ['']+[pr+'/' for pr in PROJ]]
+          Path('sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('  <url><loc>%s</loc><lastmod>%s</lastmod></url>\n'%(u,today) for u in urls)+'</urlset>\n')
+          Path('robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n'%B)
+          print('ok',len(urls))
+          Path('.github/workflows/seo-pass.yml').unlink()
+      - name: Commit
+        run: |
+          git config user.name 'RaulBaeza15'
+          git config user.email '177480579+RaulBaeza15@users.noreply.github.com'
+          git add -A
+          git commit -m 'SEO: sitemap, robots, Person/project JSON-LD, favicon, point verbs tool to Scale Go'
+          git push

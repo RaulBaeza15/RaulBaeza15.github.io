@@ -1,6 +1,6 @@
 # Plan que sí apetece (busca-planes)
 
-Tres roles (buscador, analizador, validador) sobre un modelo abierto local (Qwen2.5-1.5B-Instruct, Q4_K_M, solo CPU, sin API). Es un sistema de agentes que busca planes gratuitos de una ciudad por sí solo y enseña lo que hace en cada paso.
+Sistema de agentes para recomendar planes gratuitos, con buscador web probado en local y selección demostrada sobre 715 planes de Madrid.
 
 - `buscar_planes.py`: deja el listado en `base.json`, el formato que lee `agentes.py`. Ver la sección siguiente.
 - `base_1.json` a `base_4.json`: el listado que usa la demo: 715 registros de Madrid, 3-25 oct 2026. 62 leídos a mano de sus fuentes (`MAD-*`) y 653 de la agenda oficial del Ayuntamiento (`AGM-*`, datos abiertos). Solo planes gratis según la fuente, con hora y lugar.
